@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     public AudioSource AudioSource;
 
-    public GameObject PlayerCanvas;
     public Image InteractionFiller;
 
 

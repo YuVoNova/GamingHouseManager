@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,12 +11,10 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
 
-    // Objects & Components
+    // Money Panel
 
-
-
-    // Values
-
+    [SerializeField]
+    private TMP_Text MoneyText;
 
 
     // Unity Functions
@@ -27,4 +27,6 @@ public class UIManager : MonoBehaviour
     }
 
     // Methods
+
+
 }
