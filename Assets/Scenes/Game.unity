@@ -179,6 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 221410640}
+  - component: {fileID: 221410642}
   - component: {fileID: 221410639}
   - component: {fileID: 221410638}
   - component: {fileID: 221410641}
@@ -290,6 +291,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &221410642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221410637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31745071fede33a458b235151e1a1040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowSpeed: 3
 --- !u!1 &355820684
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc47079cf80c9894a8adf6ab7e08629d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoneyText: {fileID: 0}
 --- !u!1 &1195623233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3170270903491208287, guid: 443786b513228c049b5317da72ec8103,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 3236389748240501870, guid: 443786b513228c049b5317da72ec8103,
         type: 3}

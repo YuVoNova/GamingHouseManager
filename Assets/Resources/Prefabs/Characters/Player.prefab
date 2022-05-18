@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 3170270903491208258}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   rotationSpeed: 10
   clickFlag: 0
   isJoystickActive: 0
-  MovementSpeed: 100
+  MovementSpeed: 250
 --- !u!54 &3170270903491208287
 Rigidbody:
   m_ObjectHideFlags: 0

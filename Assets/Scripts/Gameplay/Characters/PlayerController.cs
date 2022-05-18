@@ -114,6 +114,13 @@ public class PlayerController : MonoBehaviour
                 direction.y = 0f;
                 rigidbody.velocity = direction * MovementSpeed * Time.fixedDeltaTime;
             }
+            else
+            {
+                if (rigidbody.velocity.magnitude > 0.1f)
+                {
+                    rigidbody.velocity = Vector3.zero;
+                }
+            }
         }
     }
 
