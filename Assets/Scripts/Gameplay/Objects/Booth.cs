@@ -16,7 +16,7 @@ public class Booth : MonoBehaviour
     private GameObject[] BoothLevels;
 
     [SerializeField]
-    private MoneyArea MoneyArea;
+    private InteractableMoneyArea InteractableMoneyArea;
 
 
     // Values
@@ -24,37 +24,17 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private int CurrentBoothLevel;
 
-    private bool isWorking;
-
-    [SerializeField]
-    private float moneySpawnDuration;
-    private float moneySpawnTimer;
-
 
     // Unity Functions
 
     private void Awake()
     {
-        isWorking = false;
 
-        moneySpawnTimer = 0f;
     }
 
     private void Update()
     {
-        if (isWorking)
-        {
-            if (moneySpawnTimer <= 0f)
-            {
-                MoneyArea.SpawnMoney();
 
-                moneySpawnTimer = moneySpawnDuration;
-            }
-            else
-            {
-                moneySpawnTimer -= Time.deltaTime;
-            }
-        }
     }
 
 
