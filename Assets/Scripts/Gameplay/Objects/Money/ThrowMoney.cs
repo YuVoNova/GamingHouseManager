@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Money : MonoBehaviour
+public class ThrowMoney : MonoBehaviour
 {
     [HideInInspector]
     public int Amount;

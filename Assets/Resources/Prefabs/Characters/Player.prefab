@@ -43,10 +43,12 @@ GameObject:
   - component: {fileID: 3170270903491208259}
   - component: {fileID: 3170270903491208285}
   - component: {fileID: 3170270903491208286}
+  - component: {fileID: 4990944288000625686}
   - component: {fileID: 3170270903491208287}
   - component: {fileID: 3170270903491208256}
   - component: {fileID: 3170270903491208257}
   - component: {fileID: 3170270903491208258}
+  - component: {fileID: 8269563239813266213}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -69,6 +71,7 @@ Transform:
   - {fileID: 2602675250471048921}
   - {fileID: 3910529510303655417}
   - {fileID: 3786628248893034931}
+  - {fileID: 1915669022511369201}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 3170270903491208286}
   Animator: {fileID: 3170270903491208257}
+  MoneyFlow: {fileID: 4990944288000625686}
+  MoneyFlowPoint: {fileID: 1915669022511369201}
   AudioSource: {fileID: 3170270903491208258}
   InteractionFiller: {fileID: 3424566606229389977}
 --- !u!114 &3170270903491208286
@@ -106,6 +111,22 @@ MonoBehaviour:
   clickFlag: 0
   isJoystickActive: 0
   MovementSpeed: 250
+--- !u!114 &4990944288000625686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170270903491208260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a5525d75aa0144fb547bfb58cf9b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlowMoneyPrefab: {fileID: 7090875191836515744, guid: 5e42784b55a35ef4380c6285424e3ae9,
+    type: 3}
+  SpawnDuration: 0.1
+  TargetTransform: {fileID: 0}
 --- !u!54 &3170270903491208287
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,7 +141,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &3170270903491208256
 BoxCollider:
@@ -251,6 +272,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8269563239813266213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170270903491208260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a5525d75aa0144fb547bfb58cf9b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlowMoneyPrefab: {fileID: 0}
+  SpawnDuration: 0
+  TargetTransform: {fileID: 0}
 --- !u!1 &3170270904240800386
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +454,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5517577331144414941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915669022511369201}
+  m_Layer: 3
+  m_Name: MoneyFlowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915669022511369201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5517577331144414941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3170270903491208259}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7534596534160424850
 PrefabInstance:
   m_ObjectHideFlags: 0

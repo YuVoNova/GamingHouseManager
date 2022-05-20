@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Animator Animator;
 
+    public MoneyFlow MoneyFlow;
+    public Transform MoneyFlowPoint;
+
     public AudioSource AudioSource;
 
     public Image InteractionFiller;
