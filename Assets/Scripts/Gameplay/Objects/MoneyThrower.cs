@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoneyThrower : MonoBehaviour
@@ -31,7 +32,7 @@ public class MoneyThrower : MonoBehaviour
 
     private void Start()
     {
-        //SpawnMoney(304);
+
     }
 
     public void SpawnMoney(int amount)

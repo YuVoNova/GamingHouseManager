@@ -11,6 +11,11 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
 
+    // In-Game Buttons
+
+    public GameObject DropEnergyDrinksButtonObject;
+
+
     // Money Panel
 
     [SerializeField]
@@ -23,10 +28,15 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
 
-
+        DropEnergyDrinksButtonObject.SetActive(false);
     }
 
     // Methods
 
+    public void OnClickDropEnergyDrinksButton()
+    {
+        Player.Instance.DropEnergyDrinks();
 
+        DropEnergyDrinksButtonObject.SetActive(false);
+    }
 }

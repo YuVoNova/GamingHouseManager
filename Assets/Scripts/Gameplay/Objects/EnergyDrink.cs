@@ -1,12 +1,8 @@
 using UnityEngine;
 
-public class AreaMoney : MonoBehaviour
+public class EnergyDrink : MonoBehaviour
 {
-    [HideInInspector]
-    public int Amount;
-
     private Vector3 originPosition;
-    private Quaternion originRotation;
 
     [SerializeField]
     private float Speed;
@@ -16,7 +12,6 @@ public class AreaMoney : MonoBehaviour
     private void Awake()
     {
         originPosition = transform.position;
-        originRotation = transform.rotation;
 
         isMagnetized = false;
     }
@@ -26,16 +21,17 @@ public class AreaMoney : MonoBehaviour
         if (isMagnetized)
         {
             transform.position = Vector3.MoveTowards(transform.position, Player.Instance.transform.position, Speed * Time.deltaTime);
-            transform.LookAt(Player.Instance.transform);
 
             if (Vector3.Distance(transform.position, Player.Instance.transform.position) < 0.2f)
             {
-                GameManager.Instance.MoneyEarned(Amount);
+                if (Player.Instance.AvailableForEnergyDrinks)
+                {
+                    Player.Instance.EnergyDrinkAcquired();
+                }
 
                 isMagnetized = false;
 
                 transform.position = originPosition;
-                transform.rotation = originRotation;
 
                 gameObject.SetActive(false);
             }

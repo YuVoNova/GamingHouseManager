@@ -7,9 +7,10 @@ public class InteractableMoneyArea : Interactable
     private Transform AreaMoneyParent;
 
     [SerializeField]
+    private int AmountPerMoney;
+
     private List<AreaMoney> areaMoneyList;
 
-    [SerializeField]
     private int currentIndex;
 
     [SerializeField]
@@ -20,8 +21,9 @@ public class InteractableMoneyArea : Interactable
     private float MoneySpawnDuration;
     private float moneySpawnTimer;
 
-    public bool isWorking;
-    [SerializeField]
+    [HideInInspector]
+    public bool IsWorking;
+
     private bool isInteracting;
 
 
@@ -37,10 +39,12 @@ public class InteractableMoneyArea : Interactable
             areaMoneyList.Add(child.GetComponent<AreaMoney>());
         }
 
+        SetAreaMoneyAmount();
+
         moneySpawnTimer = MoneySpawnDuration;
         magnetizeTimer = MagnetizeDuration;
 
-        isWorking = false;
+        IsWorking = false;
         isInteracting = false;
     }
 
@@ -48,7 +52,7 @@ public class InteractableMoneyArea : Interactable
     {
         base.Update();
 
-        if (isWorking)
+        if (IsWorking)
         {
             if (moneySpawnTimer <= 0f)
             {
@@ -102,7 +106,7 @@ public class InteractableMoneyArea : Interactable
         isInteracting = false;
     }
 
-    public void SpawnMoney()
+    private void SpawnMoney()
     {
         if (currentIndex != areaMoneyList.Count)
         {
@@ -111,6 +115,16 @@ public class InteractableMoneyArea : Interactable
                 areaMoneyList[currentIndex].gameObject.SetActive(true);
                 currentIndex++;
             }
+        }
+    }
+
+    private void SetAreaMoneyAmount()
+    {
+        // TO DO -> Set AmountPerMoney depending on Booth's level.
+
+        foreach (AreaMoney areaMoney in areaMoneyList)
+        {
+            areaMoney.Amount = AmountPerMoney;
         }
     }
 }

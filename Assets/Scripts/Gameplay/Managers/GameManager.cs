@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
 
     // Objects & Components
 
+    [Header("Objects & Components", order = 0)]
+
     [SerializeField]
     private NavMeshSurface NavMeshSurface;
 
 
     // Values
+
+    [Header("Values", order = 0)]
+
+    public float EnergyAmount;
 
     [HideInInspector]
     public bool IsGameOn;
@@ -47,13 +53,13 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOn)
         {
-            
+
         }
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
 

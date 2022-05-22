@@ -27,7 +27,6 @@ public class InteractableStreamArea : Interactable
     private float PayDuration;
     private float payTimer;
 
-    [SerializeField]
     private bool isInteracting;
 
     protected override void Awake()
