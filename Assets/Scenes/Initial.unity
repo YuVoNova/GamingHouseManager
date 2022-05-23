@@ -329,3 +329,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649b4c3b3873da94d8231aea9446a31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Games:
+  - {fileID: 11400000, guid: d07a7bcdc40b32743ab95ae71f0870df, type: 2}
+  - {fileID: 11400000, guid: faf9fa278082785429706b6377d506ad, type: 2}
+  - {fileID: 11400000, guid: a4317c9fb2abd6d4cac0535ed2ff61b0, type: 2}
+  - {fileID: 11400000, guid: b968ae2b239ea954c81cb0ef9a2f0007, type: 2}
+  Teams:
+  - {fileID: 11400000, guid: 22533796c3b74cd4eb50f79bc8fb7775, type: 2}
+  - {fileID: 11400000, guid: 9de0b0f9be3f3fe44b36ec0620f1f57e, type: 2}
+  - {fileID: 11400000, guid: a574d8a717c192949a6ef25eab34fa7d, type: 2}
+  - {fileID: 11400000, guid: 7d5938016fa323748802413d8aeb330f, type: 2}
+  - {fileID: 11400000, guid: 98bcf0a40f82d7048b78d50820a3920c, type: 2}
+  - {fileID: 11400000, guid: d822b170f223af044b403ec19de10959, type: 2}
+  - {fileID: 11400000, guid: 92818fe370531c94cb063e7925619f8d, type: 2}
+  - {fileID: 11400000, guid: 5d135bbb8e4dada4c98803848ab02252, type: 2}

@@ -30,8 +30,8 @@ public class Booth : MonoBehaviour
 
     [Header("Values", order = 0)]
 
-    [SerializeField]
-    private int CurrentBoothLevel;
+    //[HideInInspector]
+    public int CurrentBoothLevel;
 
     [SerializeField]
     private float MaxEnergy;
@@ -89,6 +89,14 @@ public class Booth : MonoBehaviour
 
 
     // Methods
+
+    private void LevelUpBooth()
+    {
+        // TO DO -> If leveled up to 1, add Game.ID to GameManager.AvailableGameIDList.
+        // TO DO -> If leveled up to 1, activate Interactables.
+
+
+    }
 
     public void EnergyAcquired()
     {

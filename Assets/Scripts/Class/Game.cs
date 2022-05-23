@@ -6,6 +6,7 @@ public class Game : ScriptableObject
 {
     public int ID;
     public string Name;
-    public Image Logo;
+    public Sprite Logo;
+    public Sprite LogoType;
     public Color[] Colors = new Color[2];
 }

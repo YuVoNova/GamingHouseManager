@@ -32,6 +32,9 @@ public class Manager : MonoBehaviour
 
     // Game Data
 
+    public List<Game> Games;
+    public List<Team> Teams;
+
     public Dictionary<string, AudioClip> Audios;
 
 

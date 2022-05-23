@@ -6,6 +6,7 @@ public class Team : ScriptableObject
 {
     public int ID;
     public string Name;
-    public Image Logo;
+    public Sprite LogoCircle;
+    public Sprite LogoSquare;
     public Color[] Colors = new Color[2];
 }

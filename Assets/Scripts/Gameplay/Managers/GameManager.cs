@@ -17,10 +17,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private NavMeshSurface NavMeshSurface;
 
+    [SerializeField]
+    private List<Booth> Booths;
+
+    [SerializeField]
+    private Tournament Tournament;
+
 
     // Values
 
     [Header("Values", order = 0)]
+
+    //[HideInInspector]
+    public List<int> AvailableGameIDList;
 
     public float EnergyAmount;
 
@@ -29,16 +38,18 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool OnMenu;
 
-
+    
     // Unity Functions
 
     private void Awake()
     {
         Instance = this;
 
-
-
         NavMeshSurface.BuildNavMesh();
+
+        AvailableGameIDList = new List<int>();
+
+        InitializeBooths();
 
         IsGameOn = false;
         OnMenu = false;
@@ -71,6 +82,28 @@ public class GameManager : MonoBehaviour
         IsGameOn = true;
     }
 
+    private void InitializeBooths()
+    {
+        // TO DO -> Initialize Booths here depending on PlayerData.
+
+        for (int i = 0; i < Booths.Count; i++)
+        {
+            if (Booths[i].CurrentBoothLevel > 0)
+            {
+                AvailableGameIDList.Add(i);
+            }
+        }
+
+        if (AvailableGameIDList.Count > 0)
+        {
+            Tournament.TournamentsOn = true;
+        }
+        else
+        {
+            Tournament.TournamentsOn = false;
+        }
+    }
+
     public void MoneyEarned(int amount)
     {
         /*
@@ -99,5 +132,15 @@ public class GameManager : MonoBehaviour
 
         Manager.Instance.Save();
         */
+    }
+
+    public void InitializeTournament(int boothId)
+    {
+        // TO DO -> Prepare Booth for tournament.
+    }
+
+    public int GetBoothLevel(int boothId)
+    {
+        return Booths[boothId].CurrentBoothLevel;
     }
 }

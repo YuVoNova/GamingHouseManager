@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b900f3670fd9274a90b096d991c317a, type: 3}
   m_Name: Game_1
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: 
-  Logo: {fileID: 0}
+  ID: 1
+  Name: MOBA 2
+  Logo: {fileID: 21300000, guid: c52ed4cfd72552a4d92a3d952381e820, type: 3}
+  LogoType: {fileID: 21300000, guid: 10c15bddb2a671e48a9fd959c89ecd10, type: 3}
   Colors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}

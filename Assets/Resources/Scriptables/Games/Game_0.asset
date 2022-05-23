@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Game_0
   m_EditorClassIdentifier: 
   ID: 0
-  Name: 
-  Logo: {fileID: 0}
+  Name: Vehicle Soccer
+  Logo: {fileID: 21300000, guid: 04354063f74022944a5d09b17b299f0f, type: 3}
+  LogoType: {fileID: 21300000, guid: dc535e258f8c411428fa0d4d501d8c8d, type: 3}
   Colors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}

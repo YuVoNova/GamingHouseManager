@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ef76975c1bbd34c9941453b1a34451, type: 3}
   m_Name: Team_7
   m_EditorClassIdentifier: 
+  ID: 7
+  Name: Toxic Gaming
+  LogoCircle: {fileID: 21300000, guid: 40abb10077f924544884d97ce36658df, type: 3}
+  LogoSquare: {fileID: 21300000, guid: bc10ef470a0366d48a24dd9740915527, type: 3}
+  Colors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
