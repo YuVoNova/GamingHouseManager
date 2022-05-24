@@ -23,12 +23,17 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private InteractableTeamEnergy InteractableTeamEnergy;
 
+    [SerializeField]
+    private InteractableBuyBooth InteractableBuyBooth;
+
     public Transform EnergyPoint;
 
 
     // Values
 
     [Header("Values", order = 0)]
+
+    public int ID;
 
     //[HideInInspector]
     public int CurrentBoothLevel;

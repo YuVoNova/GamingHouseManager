@@ -106,32 +106,28 @@ public class GameManager : MonoBehaviour
 
     public void MoneyEarned(int amount)
     {
-        /*
-        Manager.Instance.PlayerData.Money += Mathf.FloorToInt(amount * MoneyMultiplier);
+        Manager.Instance.PlayerData.Money += Mathf.FloorToInt(amount);
 
-        UIManager.UpdateMoneyText();
+        //UIManager.UpdateMoneyText();
 
-        Player.AudioSource.volume = 0.4f;
-        Player.AudioSource.clip = Manager.Instance.Audios["Money"];
-        Player.AudioSource.Play();
+        //Player.AudioSource.volume = 0.4f;
+        //Player.AudioSource.clip = Manager.Instance.Audios["Money"];
+        //Player.AudioSource.Play();
 
         Manager.Instance.Save();
-        */
     }
 
     public void MoneySpent(int amount)
     {
-        /*
         Manager.Instance.PlayerData.Money = Mathf.FloorToInt(Mathf.Clamp(Manager.Instance.PlayerData.Money - amount, 0f, float.MaxValue));
 
-        UIManager.UpdateMoneyText();
+        //UIManager.UpdateMoneyText();
 
-        Player.AudioSource.volume = 0.4f;
-        Player.AudioSource.clip = Manager.Instance.Audios["Money"];
-        Player.AudioSource.Play();
+        //Player.AudioSource.volume = 0.4f;
+        //Player.AudioSource.clip = Manager.Instance.Audios["Money"];
+        //Player.AudioSource.Play();
 
         Manager.Instance.Save();
-        */
     }
 
     public void InitializeTournament(int boothId)
@@ -142,5 +138,10 @@ public class GameManager : MonoBehaviour
     public int GetBoothLevel(int boothId)
     {
         return Booths[boothId].CurrentBoothLevel;
+    }
+
+    public void BoughtBooth(int boothId)
+    {
+        // TO DO -> Initialize Booth and level it up.
     }
 }

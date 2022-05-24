@@ -137,7 +137,7 @@ public class Manager : MonoBehaviour
     {
         PlayerData = new PlayerData();
 
-        dataPath = Path.Combine(Application.persistentDataPath, "HairShop.json");
+        dataPath = Path.Combine(Application.persistentDataPath, "GamingHouseManager.json");
 
         if (File.Exists(dataPath))
         {
