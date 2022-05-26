@@ -489,8 +489,8 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
+    m_Bits: 1025
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4914aae21dbba5b438ec0678c02aed23, type: 2}
 --- !u!4 &376760241
 Transform:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ Transform:
   m_Children:
   - {fileID: 524730744}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &969842882
 GameObject:
@@ -1536,7 +1536,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2006338099
 GameObject:
@@ -1680,7 +1680,7 @@ PrefabInstance:
     - target: {fileID: 2804810123651211849, guid: 67aa435e16272bd4eb339af891616ad2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2804810123651211849, guid: 67aa435e16272bd4eb339af891616ad2,
         type: 3}
@@ -1966,7 +1966,7 @@ PrefabInstance:
     - target: {fileID: 5966646141517273549, guid: 0fbacf1d53006a5418bd2cdde5d1ff02,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5966646141517273549, guid: 0fbacf1d53006a5418bd2cdde5d1ff02,
         type: 3}

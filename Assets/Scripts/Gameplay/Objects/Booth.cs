@@ -9,7 +9,7 @@ public class Booth : MonoBehaviour
     [Header("Objects & Components", order = 0)]
 
     [SerializeField]
-    private Gamer[] Gamers = new Gamer[5];
+    private Member[] Members = new Member[5];
 
     [SerializeField]
     private Game Game;
