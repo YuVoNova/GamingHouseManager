@@ -23,6 +23,9 @@ public class Tournament : MonoBehaviour
     private float TournamentDuration;
     private float tournamentTimer;
 
+    [SerializeField]
+    private Sponsor[] Sponsors;
+
     private void Awake()
     {
         tournamentCooldownTimer = TournamentCooldownDuration;
@@ -42,6 +45,19 @@ public class Tournament : MonoBehaviour
                 if (tournamentTimer <= 0f)
                 {
                     // TO DO -> Finalize tournament here.
+
+                    if (fixture[0] == 0)
+                    {
+                        Manager.Instance.PlayerData.TournamentsWon++;
+
+                        for (int i = 0; i < Sponsors.Length; i++)
+                        {
+                            if (!Sponsors[i].IsUnlocked)
+                            {
+                                Sponsors[i].CheckRequirements();
+                            }
+                        }
+                    }
 
                     tournamentCooldownTimer = TournamentCooldownDuration;
                 }

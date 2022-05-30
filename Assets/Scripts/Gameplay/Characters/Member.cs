@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Member : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private NavMeshAgent Agent;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private Animator Animator;
+
+    private const float StopDistance = 0.25f;
+
+    
 }
