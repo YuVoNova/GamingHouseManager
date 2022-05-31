@@ -26,6 +26,7 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private InteractableBuyBooth InteractableBuyBooth;
 
+    public Transform[] SeatTransforms;
     public Transform EnergyPoint;
 
 
@@ -61,6 +62,10 @@ public class Booth : MonoBehaviour
         energyDropTimer = EnergyDropDuration;
 
         UniformEnergyValue = currentEnergy / MaxEnergy;
+
+        // TEST
+        if (ID == 0)
+        InitializeBoothLevel(1);
     }
 
     private void Update()
@@ -94,6 +99,33 @@ public class Booth : MonoBehaviour
 
 
     // Methods
+
+    private void InitializeBoothLevel(int level)
+    {
+        CurrentBoothLevel = level;
+
+        if (CurrentBoothLevel > 0)
+        {
+            GameManager.Instance.AvailableGameIDList.Add(Game.ID);
+
+            for (int i = 0; i < Members.Length; i++)
+            {
+                Members[i].gameObject.SetActive(true);
+                Members[i].TakeSeat();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < Members.Length; i++)
+            {
+                Members[i].gameObject.SetActive(false);
+                Members[i].transform.position = GameManager.Instance.MemberInitialSpawnPoints[i].position;
+                Members[i].transform.rotation = GameManager.Instance.MemberInitialSpawnPoints[i].rotation;
+            }
+        }
+
+        BoothLevels[CurrentBoothLevel].SetActive(true);
+    }
 
     private void LevelUpBooth()
     {

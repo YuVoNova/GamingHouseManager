@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Tournament Tournament;
 
+    public Transform[] MemberInitialSpawnPoints;
+
 
     // Values
 

@@ -13,5 +13,5 @@ public enum MemberStates
     Playing,
     Sleeping,
     Walking_Tournament,
-    waiting_Tournament
+    Waiting_Tournament
 }
