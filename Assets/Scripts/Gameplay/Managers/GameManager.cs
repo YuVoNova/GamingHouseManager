@@ -24,13 +24,15 @@ public class GameManager : MonoBehaviour
     private Tournament Tournament;
 
     public Transform[] MemberInitialSpawnPoints;
+    public Transform[] MemberBusSpawnPoints;
+    public Transform MemberBusArrivalPoint;
 
 
     // Values
 
     [Header("Values", order = 0)]
 
-    //[HideInInspector]
+    [HideInInspector]
     public List<int> AvailableGameIDList;
 
     public float EnergyAmount;
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        NavMeshSurface.BuildNavMesh();
+        RebuildNavMesh();
 
         AvailableGameIDList = new List<int>();
 
@@ -76,7 +78,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     // Methods
 
     private void StartGame()
@@ -90,10 +91,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < Booths.Count; i++)
         {
-            if (Booths[i].CurrentBoothLevel > 0)
-            {
-                AvailableGameIDList.Add(i);
-            }
+            Booths[i].InitializeBooth();
         }
 
         if (AvailableGameIDList.Count > 0)
@@ -137,13 +135,20 @@ public class GameManager : MonoBehaviour
         // TO DO -> Prepare Booth for tournament.
     }
 
+    public void RebuildNavMesh()
+    {
+        NavMeshSurface.BuildNavMesh();
+    }
+
     public int GetBoothLevel(int boothId)
     {
         return Booths[boothId].CurrentBoothLevel;
     }
 
-    public void BoughtBooth(int boothId)
+    public void UpgradeBooth(int boothId)
     {
-        // TO DO -> Initialize Booth and level it up.
+        
+
+        Booths[boothId].LevelUpBooth();
     }
 }

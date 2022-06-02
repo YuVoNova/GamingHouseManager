@@ -2679,12 +2679,12 @@ GameObject:
   - component: {fileID: 7772204042461540738}
   - component: {fileID: 5517804465214045288}
   m_Layer: 6
-  m_Name: Member_F
+  m_Name: Member_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2640997625643924853
 Transform:
   m_ObjectHideFlags: 0

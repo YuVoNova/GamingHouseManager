@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class Member : MonoBehaviour
 {
+    [HideInInspector]
     public int ID;
     
+    [HideInInspector]
     public MemberStates CurrentState;
 
     private NavMeshAgent Agent;
@@ -21,8 +23,6 @@ public class Member : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
-
-        SeatTransform = transform.parent.parent.GetComponent<Booth>().SeatTransforms[ID];
     }
 
     private void Update()
@@ -74,6 +74,12 @@ public class Member : MonoBehaviour
 
                 break;
         }
+    }
+
+    public void InitializeMember(int id)
+    {
+        ID = id;
+        SeatTransform = transform.parent.parent.GetComponent<Booth>().SeatTransforms[ID];
     }
 
     public void Unlocked()

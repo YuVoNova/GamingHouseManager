@@ -6,29 +6,35 @@ using TMPro;
 public class InteractableBuyBooth : Interactable
 {
     [SerializeField]
+    private TMP_Text BuyText;
+    [SerializeField]
     private TMP_Text PriceText;
+    [SerializeField]
+    private GameObject MoneyIcon;
 
     private int price;
     private int payValue;
     private int step;
     private int boothId;
+    private int currentLevel;
 
     protected override void Awake()
     {
         base.Awake();
 
         boothId = transform.parent.GetComponent<Booth>().ID;
-        price = Manager.Instance.PlayerData.BoothPrices[boothId];
-        step = Mathf.FloorToInt(Mathf.Clamp(price / 40f, 1f, float.MaxValue));
 
-        UpdatePriceText();
+        PaymentCompleted();
     }
 
     public override void ExitPreInteraction()
     {
         base.ExitPreInteraction();
 
-        Player.Instance.MoneyFlow.StartFlow(Player.Instance.transform, transform);
+        if (price != 0)
+        {
+            Player.Instance.MoneyFlow.StartFlow(Player.Instance.transform, transform);
+        }
     }
 
     public override void ExitInteraction()
@@ -63,7 +69,7 @@ public class InteractableBuyBooth : Interactable
                 }
 
                 price = Mathf.FloorToInt(Mathf.Clamp(price - payValue, 0f, float.MaxValue));
-                Manager.Instance.PlayerData.BoothPrices[boothId] = price;
+                Manager.Instance.PlayerData.BoothPrices[boothId][currentLevel] = price;
 
                 GameManager.Instance.MoneySpent(payValue);
 
@@ -72,13 +78,43 @@ public class InteractableBuyBooth : Interactable
                 if (price == 0)
                 {
                     Player.Instance.MoneyFlow.EndFlow();
-                    GameManager.Instance.BoughtBooth(boothId);
+
+                    GameManager.Instance.UpgradeBooth(boothId);
+                    PaymentCompleted();
                 }
             }
         }
         else
         {
             Player.Instance.MoneyFlow.EndFlow();
+        }
+    }
+
+    private void PaymentCompleted()
+    {
+        currentLevel = Manager.Instance.PlayerData.BoothLevels[boothId];
+
+        if (currentLevel < 4)
+        {
+            price = Manager.Instance.PlayerData.BoothPrices[boothId][currentLevel];
+            step = Mathf.FloorToInt(Mathf.Clamp(price / 40f, 1f, float.MaxValue));
+
+            if (currentLevel == 0)
+            {
+                BuyText.text = "Buy Room";
+            }
+            else
+            {
+                BuyText.text = "Level " + (currentLevel + 1);
+            }
+
+            UpdatePriceText();
+        }
+        else
+        {
+            BuyText.gameObject.SetActive(false);
+            PriceText.text = "MAX";
+            MoneyIcon.SetActive(false);
         }
     }
 

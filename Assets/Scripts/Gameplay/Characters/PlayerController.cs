@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
                             clickFlag = false;
                             isJoystickActive = true;
 
-                            // TO DO -> Animate Running
+                            // TO DO -> Play "Run" animation.
                         }
 
                         if (delta.magnitude > clickTreshold)
@@ -86,12 +86,12 @@ public class PlayerController : MonoBehaviour
                         clickFlag = false;
                         isJoystickActive = false;
 
-                        // TO DO -> Animate Idle
+                        // TO DO -> Play "Idle" animation.
                     }
                 }
                 else
                 {
-                    // TO DO -> Animate Idle
+                    // TO DO -> Play "Idle" animation.
 
                     direction = transform.forward;
                 }

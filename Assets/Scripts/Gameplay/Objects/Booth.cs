@@ -9,13 +9,18 @@ public class Booth : MonoBehaviour
     [Header("Objects & Components", order = 0)]
 
     [SerializeField]
-    private Member[] Members = new Member[5];
-
-    [SerializeField]
     private Game Game;
 
     [SerializeField]
     private GameObject[] BoothLevels;
+
+    private Member[] Members = new Member[5];
+
+    [SerializeField]
+    private int[] MemberSpawnID = new int[5];
+
+    [SerializeField]
+    private Transform MembersParent;
 
     [SerializeField]
     private InteractableMoneyArea InteractableMoneyArea;
@@ -36,7 +41,7 @@ public class Booth : MonoBehaviour
 
     public int ID;
 
-    //[HideInInspector]
+    [HideInInspector]
     public int CurrentBoothLevel;
 
     [SerializeField]
@@ -49,7 +54,7 @@ public class Booth : MonoBehaviour
     private float currentEnergy;
     private float energyDropTimer;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float UniformEnergyValue;
 
 
@@ -62,10 +67,6 @@ public class Booth : MonoBehaviour
         energyDropTimer = EnergyDropDuration;
 
         UniformEnergyValue = currentEnergy / MaxEnergy;
-
-        // TEST
-        if (ID == 0)
-        InitializeBoothLevel(1);
     }
 
     private void Update()
@@ -100,19 +101,21 @@ public class Booth : MonoBehaviour
 
     // Methods
 
-    private void InitializeBoothLevel(int level)
+    public void InitializeBooth()
     {
-        CurrentBoothLevel = level;
+        CurrentBoothLevel = Manager.Instance.PlayerData.BoothLevels[ID];
+
+        GameObject member;
+        for (int i = 0; i < Members.Length; i++)
+        {
+            member = Instantiate(Manager.Instance.MemberPrefabs[MemberSpawnID[i]], MembersParent) as GameObject;
+            Members[i] = member.GetComponent<Member>();
+            Members[i].InitializeMember(i);
+        }
 
         if (CurrentBoothLevel > 0)
         {
-            GameManager.Instance.AvailableGameIDList.Add(Game.ID);
-
-            for (int i = 0; i < Members.Length; i++)
-            {
-                Members[i].gameObject.SetActive(true);
-                Members[i].TakeSeat();
-            }
+            UnlockedBooth(true);
         }
         else
         {
@@ -125,14 +128,51 @@ public class Booth : MonoBehaviour
         }
 
         BoothLevels[CurrentBoothLevel].SetActive(true);
+        GameManager.Instance.RebuildNavMesh();
     }
 
-    private void LevelUpBooth()
+    private void UnlockedBooth(bool isInitial)
     {
-        // TO DO -> If leveled up to 1, add Game.ID to GameManager.AvailableGameIDList.
-        // TO DO -> If leveled up to 1, activate Interactables.
+        if (!GameManager.Instance.AvailableGameIDList.Contains(Game.ID))
+        {
+            GameManager.Instance.AvailableGameIDList.Add(Game.ID);
+        }
 
+        for (int i = 0; i < Members.Length; i++)
+        {
+            Members[i].gameObject.SetActive(true);
 
+            if (isInitial)
+            {
+                Members[i].TakeSeat();
+            }
+            else
+            {
+                Members[i].Unlocked();
+            }
+        }
+
+        InteractableMoneyArea.gameObject.SetActive(true);
+    }
+
+    public void LevelUpBooth()
+    {
+        InteractableBuyBooth.gameObject.SetActive(false);
+        InteractableBuyBooth.gameObject.SetActive(true);
+
+        BoothLevels[CurrentBoothLevel].SetActive(false);
+
+        Manager.Instance.PlayerData.BoothLevels[ID] = Mathf.Clamp(Manager.Instance.PlayerData.BoothLevels[ID] + 1, 0, 4);
+        Manager.Instance.Save();
+
+        CurrentBoothLevel = Manager.Instance.PlayerData.BoothLevels[ID];
+
+        if (CurrentBoothLevel == 1)
+        {
+            UnlockedBooth(false);
+        }
+
+        BoothLevels[CurrentBoothLevel].SetActive(true);
     }
 
     public void EnergyAcquired()

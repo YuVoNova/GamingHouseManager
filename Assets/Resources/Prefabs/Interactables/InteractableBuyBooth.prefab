@@ -31,8 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7992418002408409539}
-  - {fileID: 3136315490949021557}
   - {fileID: 2145682255517237227}
+  - {fileID: 3136315490949021557}
   - {fileID: 3136315490691236367}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,7 +52,9 @@ MonoBehaviour:
   Duration: 0
   PreInteractionDuration: 0.75
   InteractionType: 1
+  BuyText: {fileID: 6286321741369271482}
   PriceText: {fileID: 3136315490949021562}
+  MoneyIcon: {fileID: 3136315490691236366}
 --- !u!65 &3136315489325125678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -181,7 +183,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3136315489325125673}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -354,7 +356,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3136315489325125673}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -423,7 +425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buy Booth
+  m_text: Buy Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0cef72d0c8fddf746b899c4be63ed4dd, type: 2}
   m_sharedMaterial: {fileID: 8417746574785606054, guid: 0cef72d0c8fddf746b899c4be63ed4dd,

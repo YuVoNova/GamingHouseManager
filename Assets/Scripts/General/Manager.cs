@@ -42,10 +42,12 @@ public class Manager : MonoBehaviour
 
     private string dataPath;
 
+    private JsonData jsonData;
+
 
     // Instantiatable Objects
-    
 
+    public GameObject[] MemberPrefabs;
 
 
     // Unity Functions
@@ -136,6 +138,7 @@ public class Manager : MonoBehaviour
     private void InitializePlayerData()
     {
         PlayerData = new PlayerData();
+        jsonData = new JsonData();
 
         dataPath = Path.Combine(Application.persistentDataPath, "GamingHouseManager.json");
 
@@ -158,7 +161,28 @@ public class Manager : MonoBehaviour
     // Saves progress data.
     private void SerializeData()
     {
-        string jsonDataString = JsonUtility.ToJson(PlayerData, true);
+        jsonData.Money = PlayerData.Money;
+        jsonData.TournamentsWon = PlayerData.TournamentsWon;
+        jsonData.BoothLevels = PlayerData.BoothLevels;
+
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            jsonData.BoothPrices0[i] = PlayerData.BoothPrices[0][i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            jsonData.BoothPrices1[i] = PlayerData.BoothPrices[1][i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            jsonData.BoothPrices2[i] = PlayerData.BoothPrices[2][i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            jsonData.BoothPrices3[i] = PlayerData.BoothPrices[3][i];
+        }
+
+        string jsonDataString = JsonUtility.ToJson(jsonData, true);
 
         File.WriteAllText(dataPath, jsonDataString);
     }
@@ -168,8 +192,49 @@ public class Manager : MonoBehaviour
     {
         string jsonDataString = File.ReadAllText(dataPath);
 
-        PlayerData = JsonUtility.FromJson<PlayerData>(jsonDataString);
+        jsonData = JsonUtility.FromJson<JsonData>(jsonDataString);
+
+        PlayerData.Money = jsonData.Money;
+        PlayerData.TournamentsWon = jsonData.TournamentsWon;
+        PlayerData.BoothLevels = jsonData.BoothLevels;
+
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            PlayerData.BoothPrices[0][i] = jsonData.BoothPrices0[i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            PlayerData.BoothPrices[1][i] = jsonData.BoothPrices1[i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            PlayerData.BoothPrices[2][i] = jsonData.BoothPrices2[i];
+        }
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            PlayerData.BoothPrices[3][i] = jsonData.BoothPrices3[i];
+        }
     }
 
     #endregion
+}
+
+public class JsonData
+{
+    public const int BoothCount = 4;
+
+    public int Money;
+    public int TournamentsWon;
+
+    public int[] BoothLevels = new int[BoothCount];
+
+    public int[] BoothPrices0 = new int[BoothCount];
+    public int[] BoothPrices1 = new int[BoothCount];
+    public int[] BoothPrices2 = new int[BoothCount];
+    public int[] BoothPrices3 = new int[BoothCount];
+
+    public JsonData()
+    {
+        
+    }
 }

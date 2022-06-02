@@ -34,10 +34,8 @@ public class Sponsor : MonoBehaviour
                 Unlock();
             }
         }
-        else
-        {
-            UpdateText();
-        }
+
+        UpdateText();
     }
 
     private void Unlock()
