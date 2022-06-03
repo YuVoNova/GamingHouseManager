@@ -164,6 +164,7 @@ public class Manager : MonoBehaviour
         jsonData.Money = PlayerData.Money;
         jsonData.TournamentsWon = PlayerData.TournamentsWon;
         jsonData.BoothLevels = PlayerData.BoothLevels;
+        jsonData.MainHubLevel = PlayerData.MainHubLevel;
 
         for (int i = 0; i < PlayerData.BoothCount; i++)
         {
@@ -181,6 +182,10 @@ public class Manager : MonoBehaviour
         {
             jsonData.BoothPrices3[i] = PlayerData.BoothPrices[3][i];
         }
+        for (int i = 0; i < PlayerData.MainHubLevelCount; i++)
+        {
+            jsonData.MainHubPrices[i] = PlayerData.MainHubPrices[i];
+        }
 
         string jsonDataString = JsonUtility.ToJson(jsonData, true);
 
@@ -197,6 +202,7 @@ public class Manager : MonoBehaviour
         PlayerData.Money = jsonData.Money;
         PlayerData.TournamentsWon = jsonData.TournamentsWon;
         PlayerData.BoothLevels = jsonData.BoothLevels;
+        PlayerData.MainHubLevel = jsonData.MainHubLevel;
 
         for (int i = 0; i < PlayerData.BoothCount; i++)
         {
@@ -214,6 +220,10 @@ public class Manager : MonoBehaviour
         {
             PlayerData.BoothPrices[3][i] = jsonData.BoothPrices3[i];
         }
+        for (int i = 0; i < PlayerData.MainHubLevelCount; i++)
+        {
+            PlayerData.MainHubPrices[i] = jsonData.MainHubPrices[i];
+        }
     }
 
     #endregion
@@ -221,17 +231,17 @@ public class Manager : MonoBehaviour
 
 public class JsonData
 {
-    public const int BoothCount = 4;
-
     public int Money;
     public int TournamentsWon;
 
-    public int[] BoothLevels = new int[BoothCount];
+    public int[] BoothLevels = new int[PlayerData.BoothCount];
+    public int MainHubLevel;
 
-    public int[] BoothPrices0 = new int[BoothCount];
-    public int[] BoothPrices1 = new int[BoothCount];
-    public int[] BoothPrices2 = new int[BoothCount];
-    public int[] BoothPrices3 = new int[BoothCount];
+    public int[] BoothPrices0 = new int[PlayerData.BoothLevelCount];
+    public int[] BoothPrices1 = new int[PlayerData.BoothLevelCount];
+    public int[] BoothPrices2 = new int[PlayerData.BoothLevelCount];
+    public int[] BoothPrices3 = new int[PlayerData.BoothLevelCount];
+    public int[] MainHubPrices = new int[PlayerData.MainHubLevelCount];
 
     public JsonData()
     {

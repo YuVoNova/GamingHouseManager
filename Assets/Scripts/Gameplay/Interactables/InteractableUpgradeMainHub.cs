@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class InteractableBuyBooth : Interactable
+public class InteractableUpgradeMainHub : Interactable
 {
     [SerializeField]
     private TMP_Text BuyText;
@@ -15,14 +15,11 @@ public class InteractableBuyBooth : Interactable
     private int price;
     private int payValue;
     private int step;
-    private int boothId;
     private int currentLevel;
 
     protected override void Awake()
     {
         base.Awake();
-
-        boothId = transform.parent.GetComponent<Booth>().ID;
 
         PaymentCompleted();
     }
@@ -69,7 +66,7 @@ public class InteractableBuyBooth : Interactable
                 }
 
                 price = Mathf.FloorToInt(Mathf.Clamp(price - payValue, 0f, float.MaxValue));
-                Manager.Instance.PlayerData.BoothPrices[boothId][currentLevel] = price;
+                Manager.Instance.PlayerData.MainHubPrices[currentLevel] = price;
 
                 GameManager.Instance.MoneySpent(payValue);
 
@@ -79,7 +76,7 @@ public class InteractableBuyBooth : Interactable
                 {
                     Player.Instance.MoneyFlow.EndFlow();
 
-                    GameManager.Instance.UpgradeBooth(boothId);
+                    GameManager.Instance.UpgradeMainHub();
                     PaymentCompleted();
                 }
             }
@@ -92,28 +89,18 @@ public class InteractableBuyBooth : Interactable
 
     private void PaymentCompleted()
     {
-        currentLevel = Manager.Instance.PlayerData.BoothLevels[boothId];
+        currentLevel = Manager.Instance.PlayerData.MainHubLevel;
 
-        if (currentLevel < PlayerData.BoothLevelCount)
+        if (currentLevel < PlayerData.MainHubLevelCount)
         {
-            price = Manager.Instance.PlayerData.BoothPrices[boothId][currentLevel];
+            price = Manager.Instance.PlayerData.MainHubPrices[currentLevel];
             step = Mathf.FloorToInt(Mathf.Clamp(price / 40f, 1f, float.MaxValue));
 
-            if (currentLevel == 0)
-            {
-                ArrowIcon.SetActive(false);
-                MoneyIcon.SetActive(true);
+            BuyText.text = "Lv" + (currentLevel + 1) + "         " + "Lv" + (currentLevel + 2);
 
-                BuyText.text = "Buy Room";
-            }
-            else
+            if (!ArrowIcon.activeSelf)
             {
-                BuyText.text = "Lv" + currentLevel + "         " + "Lv" + (currentLevel + 1);
-
-                if (!ArrowIcon.activeSelf)
-                {
-                    ArrowIcon.SetActive(true);
-                }
+                ArrowIcon.SetActive(true);
             }
 
             UpdatePriceText();

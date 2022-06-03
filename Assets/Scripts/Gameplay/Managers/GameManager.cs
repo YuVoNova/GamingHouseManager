@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
     private List<Booth> Booths;
 
     [SerializeField]
+    private MainHub MainHub;
+
+    [SerializeField]
+    private GameObject InteractableUpgradeMainHub;
+
+    [SerializeField]
+    private GameObject InteractableStreamArea;
+
+    [SerializeField]
     private Tournament Tournament;
 
     public Transform[] MemberInitialSpawnPoints;
@@ -54,6 +63,15 @@ public class GameManager : MonoBehaviour
         AvailableGameIDList = new List<int>();
 
         InitializeBooths();
+
+        if (Manager.Instance.PlayerData.MainHubLevel > 0)
+        {
+            InteractableStreamArea.SetActive(true);
+        }
+        else
+        {
+            InteractableStreamArea.SetActive(false);
+        }
 
         IsGameOn = false;
         OnMenu = false;
@@ -147,8 +165,21 @@ public class GameManager : MonoBehaviour
 
     public void UpgradeBooth(int boothId)
     {
-        
-
         Booths[boothId].LevelUpBooth();
+
+        RebuildNavMesh();
+    } 
+
+    public void UpgradeMainHub()
+    {
+        InteractableUpgradeMainHub.SetActive(false);
+        InteractableUpgradeMainHub.SetActive(true);
+
+        MainHub.LevelUp();
+
+        if (MainHub.CurrentLevel > 0 && !InteractableStreamArea.activeSelf)
+        {
+            InteractableStreamArea.SetActive(true);
+        }
     }
 }
