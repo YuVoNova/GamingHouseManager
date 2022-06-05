@@ -81,12 +81,6 @@ public class Booth : MonoBehaviour
             //WallRenderers[i].materials[1] = Manager.Instance.Games[ID].WallMaterial;
         }
 
-        currentEnergy = MaxEnergy;
-
-        energyDropTimer = EnergyDropDuration;
-
-        UniformEnergyValue = currentEnergy / MaxEnergy;
-
         IsAtTournament = false;
     }
 
@@ -126,6 +120,10 @@ public class Booth : MonoBehaviour
     public void InitializeBooth()
     {
         CurrentBoothLevel = Manager.Instance.PlayerData.BoothLevels[ID];
+
+        currentEnergy = MaxEnergy;
+        energyDropTimer = EnergyDropDuration;
+        UniformEnergyValue = currentEnergy / MaxEnergy;
 
         GameObject member;
         for (int i = 0; i < Members.Length; i++)
