@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject InteractableStreamArea;
 
-    [SerializeField]
-    private Tournament Tournament;
+    public Tournament Tournament;
 
     public Transform[] MemberInitialSpawnPoints;
     public Transform[] MemberBusSpawnPoints;
@@ -50,6 +49,8 @@ public class GameManager : MonoBehaviour
     public bool IsGameOn;
     [HideInInspector]
     public bool OnMenu;
+
+    private int waitingBusId;
 
     
     // Unity Functions
@@ -114,11 +115,11 @@ public class GameManager : MonoBehaviour
 
         if (AvailableGameIDList.Count > 0)
         {
-            Tournament.TournamentsOn = true;
+            Tournament.EnableTournaments(true);
         }
         else
         {
-            Tournament.TournamentsOn = false;
+            Tournament.EnableTournaments(false);
         }
     }
 
@@ -150,7 +151,13 @@ public class GameManager : MonoBehaviour
 
     public void InitializeTournament(int boothId)
     {
-        // TO DO -> Prepare Booth for tournament.
+        Booths[boothId].InitializeTournament();
+    }
+
+    public void FinalizeTournament(int boothId)
+    {
+        Booths[boothId].FinalizeTournament();
+        waitingBusId = boothId;
     }
 
     public void RebuildNavMesh()
@@ -181,5 +188,20 @@ public class GameManager : MonoBehaviour
         {
             InteractableStreamArea.SetActive(true);
         }
+    }
+
+    public void AddGameToList(int gameId)
+    {
+        AvailableGameIDList.Add(gameId);
+
+        if (AvailableGameIDList.Count > 0 && !Tournament.TournamentsOn)
+        {
+            Tournament.EnableTournaments(true);
+        }
+    }
+
+    public void BusReturned()
+    {
+        Booths[waitingBusId].BusReturned();
     }
 }

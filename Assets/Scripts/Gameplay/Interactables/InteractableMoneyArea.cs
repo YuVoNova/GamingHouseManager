@@ -21,9 +21,6 @@ public class InteractableMoneyArea : Interactable
     private float MoneySpawnDuration;
     private float moneySpawnTimer;
 
-    [HideInInspector]
-    public bool IsWorking;
-
     private bool isInteracting;
 
 
@@ -44,7 +41,6 @@ public class InteractableMoneyArea : Interactable
         moneySpawnTimer = MoneySpawnDuration;
         magnetizeTimer = MagnetizeDuration;
 
-        IsWorking = false;
         isInteracting = false;
     }
 
@@ -52,7 +48,7 @@ public class InteractableMoneyArea : Interactable
     {
         base.Update();
 
-        if (IsWorking)
+        if (transform.parent.GetComponent<Booth>().IsWorking)
         {
             if (moneySpawnTimer <= 0f)
             {

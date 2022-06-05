@@ -58,7 +58,17 @@ public class Member : MonoBehaviour
 
             case MemberStates.Walking_Tournament:
 
+                if (Vector3.Distance(transform.position, Agent.destination) < StopDistance)
+                {
+                    Agent.enabled = false;
 
+                    transform.position = GameManager.Instance.MemberBusSpawnPoints[ID].position;
+                    GameManager.Instance.Tournament.Bus.MemberEntered();
+
+                    CurrentState = MemberStates.Waiting_Tournament;
+
+                    gameObject.SetActive(false);
+                }
 
                 break;
 
@@ -82,7 +92,7 @@ public class Member : MonoBehaviour
         SeatTransform = transform.parent.parent.GetComponent<Booth>().SeatTransforms[ID];
     }
 
-    public void Unlocked()
+    public void GoToSeat()
     {
         Agent.enabled = true;
 
@@ -103,13 +113,40 @@ public class Member : MonoBehaviour
         {
             // TO DO -> Play "Playing" animation here.
 
-            CurrentState = MemberStates.Playing;
+            Play();
         }
         else
         {
-            // TO DO -> Play "Sleeping" animation here.
-
-            CurrentState = MemberStates.Sleeping;
+            Sleep();
         }
+
+        transform.parent.parent.GetComponent<Booth>().MemberSeated();
+    }
+
+    public void Sleep()
+    {
+        // TO DO -> Play "Sleeping" animation here.
+
+        CurrentState = MemberStates.Sleeping;
+    }
+
+    public void Play()
+    {
+        // TO DO -> Play "Playing" animation here.
+
+        CurrentState = MemberStates.Playing;
+    }
+
+    public void GoToTournament()
+    {
+        transform.position = SeatTransform.GetChild(1).position;
+
+        Agent.enabled = true;
+
+        // TO DO -> Play "Run" animation here.
+
+        Agent.SetDestination(GameManager.Instance.MemberBusArrivalPoint.position);
+
+        CurrentState = MemberStates.Walking_Tournament;
     }
 }

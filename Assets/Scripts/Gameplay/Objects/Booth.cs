@@ -57,6 +57,13 @@ public class Booth : MonoBehaviour
     [HideInInspector]
     public float UniformEnergyValue;
 
+    [HideInInspector]
+    public bool IsWorking;
+    [HideInInspector]
+    public bool IsAtTournament;
+
+    private int activeMemberCount;
+
 
     // Unity Functions
 
@@ -67,6 +74,8 @@ public class Booth : MonoBehaviour
         energyDropTimer = EnergyDropDuration;
 
         UniformEnergyValue = currentEnergy / MaxEnergy;
+
+        IsAtTournament = false;
     }
 
     private void Update()
@@ -75,24 +84,25 @@ public class Booth : MonoBehaviour
         {
             UniformEnergyValue = currentEnergy / MaxEnergy;
 
-            if (currentEnergy > 0f)
+            if (IsWorking)
             {
-                if (energyDropTimer <= 0f)
+                if (currentEnergy > 0f)
                 {
-                    currentEnergy = Mathf.FloorToInt(Mathf.Clamp(currentEnergy - EnergyStep, 0f, MaxEnergy));
-
-                    energyDropTimer = EnergyDropDuration;
-
-                    if (currentEnergy <= 0f)
+                    if (energyDropTimer <= 0f)
                     {
-                        InteractableMoneyArea.IsWorking = false;
+                        currentEnergy = Mathf.FloorToInt(Mathf.Clamp(currentEnergy - EnergyStep, 0f, MaxEnergy));
 
-                        // TO DO -> Enable any VFX / Animation / Sound based on depleted energy here.
+                        energyDropTimer = EnergyDropDuration;
+
+                        if (currentEnergy <= 0f)
+                        {
+                            EnergyDepleted();
+                        }
                     }
-                }
-                else
-                {
-                    energyDropTimer -= Time.deltaTime;
+                    else
+                    {
+                        energyDropTimer -= Time.deltaTime;
+                    }
                 }
             }
         }
@@ -116,6 +126,10 @@ public class Booth : MonoBehaviour
         if (CurrentBoothLevel > 0)
         {
             UnlockedBooth(true);
+
+            activeMemberCount = 5;
+
+            IsWorking = true;
         }
         else
         {
@@ -125,6 +139,10 @@ public class Booth : MonoBehaviour
                 Members[i].transform.position = GameManager.Instance.MemberInitialSpawnPoints[i].position;
                 Members[i].transform.rotation = GameManager.Instance.MemberInitialSpawnPoints[i].rotation;
             }
+
+            activeMemberCount = 0;
+
+            IsWorking = false;
         }
 
         BoothLevels[CurrentBoothLevel].SetActive(true);
@@ -135,7 +153,7 @@ public class Booth : MonoBehaviour
     {
         if (!GameManager.Instance.AvailableGameIDList.Contains(Game.ID))
         {
-            GameManager.Instance.AvailableGameIDList.Add(Game.ID);
+            GameManager.Instance.AddGameToList(Game.ID);
         }
 
         for (int i = 0; i < Members.Length; i++)
@@ -148,7 +166,7 @@ public class Booth : MonoBehaviour
             }
             else
             {
-                Members[i].Unlocked();
+                Members[i].GoToSeat();
             }
         }
 
@@ -183,16 +201,70 @@ public class Booth : MonoBehaviour
 
         UpdateEnergyBar();
 
-        if (!InteractableMoneyArea.IsWorking)
+        if (!IsWorking && !IsAtTournament)
         {
-            InteractableMoneyArea.IsWorking = true;
+            IsWorking = true;
+
+            for (int i = 0; i < Members.Length; i++)
+            {
+                Members[i].Play();
+            }
 
             // TO DO -> Disable any VFX / Animation / Sound based on depleted energy here.
         }
     }
 
+    private void EnergyDepleted()
+    {
+        IsWorking = false;
+
+        for (int i = 0; i < Members.Length; i++)
+        {
+            Members[i].Sleep();
+        }
+
+        // TO DO -> Enable any VFX / Animation / Sound based on depleted energy here.
+    }
+
     private void UpdateEnergyBar()
     {
         // TO DO -> Update EnergyBar from BoothCanvas here.
+    }
+
+    public void InitializeTournament()
+    {
+        IsAtTournament = true;
+        IsWorking = false;
+
+        activeMemberCount = 0;
+
+        for (int i = 0; i < Members.Length; i++)
+        {
+            Members[i].GoToTournament();
+        }
+    }
+    
+    public void FinalizeTournament()
+    {
+        IsAtTournament = false;
+    }
+
+    public void BusReturned()
+    {
+        for (int i = 0; i < Members.Length; i++)
+        {
+            Members[i].gameObject.SetActive(true);
+            Members[i].GoToSeat();
+        }
+    }
+
+    public void MemberSeated()
+    {
+        activeMemberCount = Mathf.Clamp(activeMemberCount + 1, 0, Members.Length);
+
+        if (activeMemberCount >= Members.Length)
+        {
+            IsWorking = true;
+        }
     }
 }
