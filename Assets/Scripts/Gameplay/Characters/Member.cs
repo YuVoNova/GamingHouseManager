@@ -8,7 +8,7 @@ public class Member : MonoBehaviour
     [HideInInspector]
     public int ID;
     
-    [HideInInspector]
+    //[HideInInspector]
     public MemberStates CurrentState;
 
     private NavMeshAgent Agent;
@@ -110,13 +110,11 @@ public class Member : MonoBehaviour
         transform.position = SeatTransform.GetChild(0).position;
         transform.rotation = SeatTransform.GetChild(0).rotation;
 
+        Animator.SetBool("isWalking", false);
+        Animator.SetBool("isSitting", true);
+        
         if (transform.parent.parent.GetComponent<Booth>().UniformEnergyValue > 0f)
         {
-            // TO DO -> Play "Playing" animation here.
-            Animator.SetBool("isWalking", false);
-            Animator.SetBool("isSitting", true);
-            Animator.SetBool("isWorking", true);
-
             Play();
         }
         else
