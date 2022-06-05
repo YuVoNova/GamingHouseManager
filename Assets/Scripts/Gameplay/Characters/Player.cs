@@ -16,8 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerController PlayerController;
 
-    [SerializeField]
-    private Animator Animator;
+    public Animator Animator;
 
     [SerializeField]
     private Transform EnergyDrinkParent;

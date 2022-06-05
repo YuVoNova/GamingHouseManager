@@ -97,6 +97,7 @@ public class Member : MonoBehaviour
         Agent.enabled = true;
 
         // TO DO -> Play "Run" animation here.
+        Animator.SetBool("isWalking", true);
 
         Agent.SetDestination(SeatTransform.position);
         CurrentState = MemberStates.Walking_Seat;
@@ -112,6 +113,9 @@ public class Member : MonoBehaviour
         if (transform.parent.parent.GetComponent<Booth>().UniformEnergyValue > 0f)
         {
             // TO DO -> Play "Playing" animation here.
+            Animator.SetBool("isWalking", false);
+            Animator.SetBool("isSitting", true);
+            Animator.SetBool("isWorking", true);
 
             Play();
         }
@@ -126,6 +130,7 @@ public class Member : MonoBehaviour
     public void Sleep()
     {
         // TO DO -> Play "Sleeping" animation here.
+        Animator.SetBool("isWorking", false);
 
         CurrentState = MemberStates.Sleeping;
     }
@@ -133,6 +138,8 @@ public class Member : MonoBehaviour
     public void Play()
     {
         // TO DO -> Play "Playing" animation here.
+        Animator.SetBool("isWorking", true);
+
 
         CurrentState = MemberStates.Playing;
     }
@@ -144,6 +151,10 @@ public class Member : MonoBehaviour
         Agent.enabled = true;
 
         // TO DO -> Play "Run" animation here.
+        Animator.SetBool("isWorking", false);
+        Animator.SetBool("isSitting", false);
+        Animator.SetBool("isWalking", true);
+
 
         Agent.SetDestination(GameManager.Instance.MemberBusArrivalPoint.position);
 

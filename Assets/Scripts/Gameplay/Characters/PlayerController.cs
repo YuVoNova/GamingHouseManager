@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
                             isJoystickActive = true;
 
                             // TO DO -> Play "Run" animation.
+                            Player.Instance.Animator.SetBool("isRunning", true);
                         }
 
                         if (delta.magnitude > clickTreshold)
@@ -87,11 +88,14 @@ public class PlayerController : MonoBehaviour
                         isJoystickActive = false;
 
                         // TO DO -> Play "Idle" animation.
+                        Player.Instance.Animator.SetBool("isRunning", false);
+
                     }
                 }
                 else
                 {
                     // TO DO -> Play "Idle" animation.
+                    Player.Instance.Animator.SetBool("isRunning", false);
 
                     direction = transform.forward;
                 }
