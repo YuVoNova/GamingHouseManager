@@ -8,5 +8,6 @@ public class Game : ScriptableObject
     public string Name;
     public Sprite Logo;
     public Sprite LogoType;
-    public Color[] Colors = new Color[2];
+    public Material GroundMaterial;
+    public Material WallMaterial;
 }

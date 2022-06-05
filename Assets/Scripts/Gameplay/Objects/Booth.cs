@@ -34,6 +34,11 @@ public class Booth : MonoBehaviour
     public Transform[] SeatTransforms;
     public Transform EnergyPoint;
 
+    [SerializeField]
+    private Renderer GroundRenderer;
+    [SerializeField]
+    private Renderer[] WallRenderers;
+
 
     // Values
 
@@ -69,6 +74,13 @@ public class Booth : MonoBehaviour
 
     private void Awake()
     {
+        GroundRenderer.material = Manager.Instance.Games[ID].GroundMaterial;
+        for (int i = 0; i < WallRenderers.Length; i++)
+        {
+            WallRenderers[i].materials = new Material[2] { Manager.Instance.Games[ID].WallMaterial, Manager.Instance.Games[ID].WallMaterial };
+            //WallRenderers[i].materials[1] = Manager.Instance.Games[ID].WallMaterial;
+        }
+
         currentEnergy = MaxEnergy;
 
         energyDropTimer = EnergyDropDuration;

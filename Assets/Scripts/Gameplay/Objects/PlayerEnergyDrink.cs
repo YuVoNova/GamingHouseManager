@@ -16,7 +16,7 @@ public class PlayerEnergyDrink : MonoBehaviour
 
     private void Awake()
     {
-        originPosition = transform.position;
+        originPosition = transform.localPosition;
 
         isMagnetized = false;
     }
@@ -33,7 +33,7 @@ public class PlayerEnergyDrink : MonoBehaviour
 
                 isMagnetized = false;
 
-                transform.position = originPosition;
+                transform.localPosition = originPosition;
 
                 targetBooth = null;
                 targetPosition = Vector3.zero;

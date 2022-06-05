@@ -43,13 +43,9 @@ public class MainHub : MonoBehaviour
         Levels[CurrentLevel].SetActive(true);
 
         Ground.material = GroundMaterials[CurrentLevel];
-
         for (int i = 0; i < Walls.Length; i++)
         {
-            for (int j = 0; j < 2; j++)
-            {
-                Walls[i].materials[j] = WallMaterials[CurrentLevel];
-            }
+            Walls[i].materials = new Material[2] { WallMaterials[CurrentLevel], WallMaterials[CurrentLevel] };
         }
     }
 }
