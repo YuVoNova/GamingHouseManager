@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   Name: MOBA 2
+  FullLogo: {fileID: 21300000, guid: abc82820257c8b34fbd2f4e551d606c2, type: 3}
   Logo: {fileID: 21300000, guid: c52ed4cfd72552a4d92a3d952381e820, type: 3}
   LogoType: {fileID: 21300000, guid: 10c15bddb2a671e48a9fd959c89ecd10, type: 3}
   GroundMaterial: {fileID: 2100000, guid: b8e5d39a0be220748ae27817bc3726a3, type: 2}

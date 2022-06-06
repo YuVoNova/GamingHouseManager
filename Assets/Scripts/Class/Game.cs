@@ -6,6 +6,7 @@ public class Game : ScriptableObject
 {
     public int ID;
     public string Name;
+    public Sprite FullLogo;
     public Sprite Logo;
     public Sprite LogoType;
     public Material GroundMaterial;

@@ -39,6 +39,9 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private Renderer[] WallRenderers;
 
+    [SerializeField]
+    private BoothCanvas BoothCanvas;
+
 
     // Values
 
@@ -154,6 +157,8 @@ public class Booth : MonoBehaviour
 
             IsWorking = false;
         }
+
+        BoothCanvas.GameLogo.sprite = Game.FullLogo;
 
         BoothLevels[CurrentBoothLevel].SetActive(true);
         GameManager.Instance.RebuildNavMesh();
