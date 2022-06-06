@@ -88,6 +88,8 @@ public class Tournament : MonoBehaviour
                         }
                     }
 
+                    UIManager.Instance.EnableTournamentResultsScreen(fixture);
+
                     isTournamentInitialized = false;
 
                     tournamentCooldownTimer = TournamentCooldownDuration;

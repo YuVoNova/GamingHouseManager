@@ -22,6 +22,21 @@ public class UIManager : MonoBehaviour
     private TMP_Text MoneyText;
 
 
+    // Tournament
+
+    [SerializeField]
+    private GameObject TournamentResultsScreen;
+
+    [SerializeField]
+    private RectTransform PlayerTeamIndicator;
+
+    [SerializeField]
+    private Image TournamentGameLogo;
+
+    [SerializeField]
+    private TeamPanel[] TeamPanels;
+
+
     // Unity Functions
 
     private void Awake()
@@ -29,6 +44,11 @@ public class UIManager : MonoBehaviour
         Instance = this;
 
         DropEnergyDrinksButtonObject.SetActive(false);
+
+        for (int i = 0; i < TeamPanels.Length; i++)
+        {
+            TeamPanels[i].RankText.text = "" + (i + 1);
+        }
     }
 
     // Methods
@@ -38,5 +58,28 @@ public class UIManager : MonoBehaviour
         Player.Instance.DropEnergyDrinks();
 
         DropEnergyDrinksButtonObject.SetActive(false);
+    }
+
+    public void EnableTournamentResultsScreen(int[] fixture)
+    {
+        if (TournamentResultsScreen.activeSelf)
+        {
+            TournamentResultsScreen.SetActive(false);
+        }
+
+        for (int i = 0; i < fixture.Length; i++)
+        {
+            TeamPanels[i].TeamLogo.sprite = null;
+            TeamPanels[i].TeamLogo.sprite = Manager.Instance.Teams[fixture[i]].LogoCircle;
+
+            TeamPanels[i].TeamNameText.text = Manager.Instance.Teams[fixture[i]].Name;
+
+            if (fixture[i] == 0)
+            {
+                PlayerTeamIndicator.anchoredPosition = new Vector2(PlayerTeamIndicator.anchoredPosition.x, TeamPanels[i].GetComponent<RectTransform>().anchoredPosition.y);
+            }
+        }
+
+        TournamentResultsScreen.SetActive(true);
     }
 }
