@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Name: Vehicle Soccer
+  FullLogo: {fileID: 21300000, guid: ba49ada560b49ad42875c22029131c30, type: 3}
   Logo: {fileID: 21300000, guid: 04354063f74022944a5d09b17b299f0f, type: 3}
   LogoType: {fileID: 21300000, guid: dc535e258f8c411428fa0d4d501d8c8d, type: 3}
   GroundMaterial: {fileID: 2100000, guid: 5294a6b5ef2b3d24a846e96f9c97b62a, type: 2}
