@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Booth : MonoBehaviour
 {
@@ -40,7 +39,12 @@ public class Booth : MonoBehaviour
     private Renderer[] WallRenderers;
 
     [SerializeField]
-    private BoothCanvas BoothCanvas;
+    private Image GameLogo;
+
+    [SerializeField]
+    private GameObject EnergyCanvas;
+    [SerializeField]
+    private Slider EnergyBarSlider;
 
 
     // Values
@@ -62,7 +66,7 @@ public class Booth : MonoBehaviour
     private float currentEnergy;
     private float energyDropTimer;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float UniformEnergyValue;
 
     [HideInInspector]
@@ -81,7 +85,6 @@ public class Booth : MonoBehaviour
         for (int i = 0; i < WallRenderers.Length; i++)
         {
             WallRenderers[i].materials = new Material[2] { Manager.Instance.Games[ID].WallMaterial, Manager.Instance.Games[ID].WallMaterial };
-            //WallRenderers[i].materials[1] = Manager.Instance.Games[ID].WallMaterial;
         }
 
         IsAtTournament = false;
@@ -91,8 +94,6 @@ public class Booth : MonoBehaviour
     {
         if (CurrentBoothLevel > 0)
         {
-            UniformEnergyValue = currentEnergy / MaxEnergy;
-
             if (IsWorking)
             {
                 if (currentEnergy > 0f)
@@ -100,6 +101,8 @@ public class Booth : MonoBehaviour
                     if (energyDropTimer <= 0f)
                     {
                         currentEnergy = Mathf.FloorToInt(Mathf.Clamp(currentEnergy - EnergyStep, 0f, MaxEnergy));
+
+                        UpdateEnergyBar();
 
                         energyDropTimer = EnergyDropDuration;
 
@@ -114,6 +117,8 @@ public class Booth : MonoBehaviour
                     }
                 }
             }
+
+            UniformEnergyValue = currentEnergy / MaxEnergy;
         }
     }
 
@@ -127,6 +132,8 @@ public class Booth : MonoBehaviour
         currentEnergy = MaxEnergy;
         energyDropTimer = EnergyDropDuration;
         UniformEnergyValue = currentEnergy / MaxEnergy;
+
+        InteractableMoneyArea.Initialize(CurrentBoothLevel);
 
         GameObject member;
         for (int i = 0; i < Members.Length; i++)
@@ -158,7 +165,9 @@ public class Booth : MonoBehaviour
             IsWorking = false;
         }
 
-        BoothCanvas.GameLogo.sprite = Game.FullLogo;
+        GameLogo.sprite = Game.FullLogo;
+
+        UpdateEnergyBar();
 
         BoothLevels[CurrentBoothLevel].SetActive(true);
         GameManager.Instance.RebuildNavMesh();
@@ -185,6 +194,7 @@ public class Booth : MonoBehaviour
             }
         }
 
+        EnergyCanvas.SetActive(true);
         InteractableMoneyArea.gameObject.SetActive(true);
     }
 
@@ -205,6 +215,8 @@ public class Booth : MonoBehaviour
             UnlockedBooth(false);
         }
 
+        InteractableMoneyArea.SetAreaMoneyAmount(CurrentBoothLevel);
+
         BoothLevels[CurrentBoothLevel].SetActive(true);
     }
 
@@ -213,7 +225,8 @@ public class Booth : MonoBehaviour
         energyDropTimer = EnergyDropDuration;
 
         currentEnergy = Mathf.FloorToInt(Mathf.Clamp(currentEnergy + GameManager.Instance.EnergyAmount, 0f, MaxEnergy));
-
+        UniformEnergyValue = currentEnergy / MaxEnergy;
+        
         UpdateEnergyBar();
 
         if (!IsWorking && !IsAtTournament)
@@ -243,7 +256,7 @@ public class Booth : MonoBehaviour
 
     private void UpdateEnergyBar()
     {
-        // TO DO -> Update EnergyBar from BoothCanvas here.
+        EnergyBarSlider.value = UniformEnergyValue;
     }
 
     public void InitializeTournament()

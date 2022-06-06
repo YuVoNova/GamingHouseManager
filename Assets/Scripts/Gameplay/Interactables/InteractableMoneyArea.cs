@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractableMoneyArea : Interactable
 {
@@ -7,7 +8,11 @@ public class InteractableMoneyArea : Interactable
     private Transform AreaMoneyParent;
 
     [SerializeField]
-    private int AmountPerMoney;
+    private TMP_Text MoneyPerSecondText;
+
+    [SerializeField]
+    private int[] AmountPerMoneyLevels;
+    private int amountPerMoney;
 
     private List<AreaMoney> areaMoneyList;
 
@@ -29,14 +34,6 @@ public class InteractableMoneyArea : Interactable
         base.Awake();
 
         currentIndex = 0;
-
-        areaMoneyList = new List<AreaMoney>();
-        foreach (Transform child in AreaMoneyParent)
-        {
-            areaMoneyList.Add(child.GetComponent<AreaMoney>());
-        }
-
-        SetAreaMoneyAmount();
 
         moneySpawnTimer = MoneySpawnDuration;
         magnetizeTimer = MagnetizeDuration;
@@ -102,6 +99,17 @@ public class InteractableMoneyArea : Interactable
         isInteracting = false;
     }
 
+    public void Initialize(int level)
+    {
+        areaMoneyList = new List<AreaMoney>();
+        foreach (Transform child in AreaMoneyParent)
+        {
+            areaMoneyList.Add(child.GetComponent<AreaMoney>());
+        }
+
+        SetAreaMoneyAmount(level);
+    }
+
     private void SpawnMoney()
     {
         if (currentIndex != areaMoneyList.Count)
@@ -114,13 +122,15 @@ public class InteractableMoneyArea : Interactable
         }
     }
 
-    private void SetAreaMoneyAmount()
+    public void SetAreaMoneyAmount(int level)
     {
-        // TO DO -> Set AmountPerMoney depending on Booth's level.
+        amountPerMoney = AmountPerMoneyLevels[level];
 
         foreach (AreaMoney areaMoney in areaMoneyList)
         {
-            areaMoney.Amount = AmountPerMoney;
+            areaMoney.Amount = amountPerMoney;
         }
+
+        MoneyPerSecondText.text = (amountPerMoney / MoneySpawnDuration).ToString("F1") + "$/s";
     }
 }

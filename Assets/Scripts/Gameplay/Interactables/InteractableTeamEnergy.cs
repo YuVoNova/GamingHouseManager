@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableTeamEnergy : Interactable
@@ -28,7 +26,7 @@ public class InteractableTeamEnergy : Interactable
         {
             if (magnetizeTimer <= 0f)
             {
-                if (transform.parent.GetComponent<Booth>().UniformEnergyValue < 0.9f)
+                if (transform.parent.GetComponent<Booth>().UniformEnergyValue < 0.95f)
                 {
                     magnetizeTimer = MagnetizeDuration;
 

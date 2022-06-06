@@ -88,7 +88,7 @@ public class Tournament : MonoBehaviour
                         }
                     }
 
-                    UIManager.Instance.EnableTournamentResultsScreen(fixture);
+                    UIManager.Instance.EnableTournamentResultsScreen(fixture, tournamentGameId);
 
                     isTournamentInitialized = false;
 

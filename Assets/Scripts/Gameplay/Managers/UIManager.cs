@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -60,12 +58,15 @@ public class UIManager : MonoBehaviour
         DropEnergyDrinksButtonObject.SetActive(false);
     }
 
-    public void EnableTournamentResultsScreen(int[] fixture)
+    public void EnableTournamentResultsScreen(int[] fixture, int gameId)
     {
         if (TournamentResultsScreen.activeSelf)
         {
             TournamentResultsScreen.SetActive(false);
         }
+
+        TournamentGameLogo.sprite = null;
+        TournamentGameLogo.sprite = Manager.Instance.Games[gameId].Logo;
 
         for (int i = 0; i < fixture.Length; i++)
         {
