@@ -183,6 +183,8 @@ public class GameManager : MonoBehaviour
 
         MainHub.LevelUp();
 
+        InteractableStreamArea.GetComponent<InteractableStreamArea>().SetMoneyAmount();
+
         if (MainHub.CurrentLevel > 0 && !InteractableStreamArea.activeSelf)
         {
             InteractableStreamArea.SetActive(true);

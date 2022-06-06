@@ -9,16 +9,14 @@ public class InteractableStreamArea : Interactable
     [SerializeField]
     private Transform MoneyFlowPoint;
 
-    [SerializeField]
-    private int AmountLimit;
+    private int amountLimit;
     private int currentAmount;
 
     [SerializeField]
     private int Step;
     private int payValue;
 
-    [SerializeField]
-    private float TickAmount;
+    private float tickAmount;
     [SerializeField]
     private float TickDuration;
     private float timer;
@@ -37,6 +35,8 @@ public class InteractableStreamArea : Interactable
         timer = 0f;
         payTimer = 0f;
 
+        SetMoneyAmount();
+
         isInteracting = false;
     }
 
@@ -46,11 +46,11 @@ public class InteractableStreamArea : Interactable
 
         if (!isInteracting)
         {
-            if (currentAmount < AmountLimit)
+            if (currentAmount < amountLimit)
             {
                 if (timer <= 0f)
                 {
-                    currentAmount = Mathf.FloorToInt(Mathf.Clamp(currentAmount + TickAmount, 0f, AmountLimit));
+                    currentAmount = Mathf.FloorToInt(Mathf.Clamp(currentAmount + tickAmount, 0f, amountLimit));
 
                     UpdateText();
 
@@ -127,6 +127,20 @@ public class InteractableStreamArea : Interactable
 
     private void UpdateText()
     {
-        AmountText.text = currentAmount + "/" + AmountLimit;
+        AmountText.text = currentAmount + "/" + amountLimit;
+    }
+
+    public void SetMoneyAmount()
+    {
+        if (Manager.Instance.PlayerData.MainHubLevel == 1)
+        {
+            tickAmount = 5;
+            amountLimit = 300;
+        }
+        else if (Manager.Instance.PlayerData.MainHubLevel == 2)
+        {
+            tickAmount = 10;
+            amountLimit = 500;
+        }
     }
 }

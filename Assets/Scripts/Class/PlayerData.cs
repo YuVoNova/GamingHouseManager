@@ -25,12 +25,14 @@ public class PlayerData
             BoothLevels[i] = 0;
         }
 
-        BoothPrices[0] = new int[BoothLevelCount] { 100, 200, 300, 400};
-        BoothPrices[1] = new int[BoothLevelCount] { 250, 500, 750, 1000};
-        BoothPrices[2] = new int[BoothLevelCount] { 500, 1000, 1500, 2000};
-        BoothPrices[3] = new int[BoothLevelCount] { 1000, 2000, 3000, 4000};
+        BoothLevels[0] = 1;
+
+        BoothPrices[0] = new int[BoothLevelCount] { 0, 1000, 1500, 3000 };
+        BoothPrices[1] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
+        BoothPrices[2] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
+        BoothPrices[3] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
 
         MainHubLevel = 0;
-        MainHubPrices = new int[MainHubLevelCount] { 500, 1000 };
+        MainHubPrices = new int[MainHubLevelCount] { 2000, 3000 };
     }
 }
