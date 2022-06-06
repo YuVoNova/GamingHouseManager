@@ -4,6 +4,6 @@ public class LookCamera : MonoBehaviour
 {
     private void Update()
     {
-        transform.rotation = Quaternion.LookRotation(-Camera.main.transform.forward);
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
     }
 }
