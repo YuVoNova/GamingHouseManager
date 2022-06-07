@@ -100,6 +100,7 @@ public class Tournament : MonoBehaviour
                     if (fixture[0] == 0)
                     {
                         Manager.Instance.PlayerData.TournamentsWon++;
+                        Manager.Instance.Save();
 
                         for (int i = 0; i < Sponsors.Length; i++)
                         {

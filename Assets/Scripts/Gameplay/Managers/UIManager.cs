@@ -47,6 +47,8 @@ public class UIManager : MonoBehaviour
         {
             TeamPanels[i].RankText.text = "" + (i + 1);
         }
+
+        UpdateMoneyText();
     }
 
     // Methods

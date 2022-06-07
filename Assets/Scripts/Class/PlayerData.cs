@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerData
 {
     public const int BoothCount = 4;
@@ -17,7 +15,8 @@ public class PlayerData
 
     public PlayerData()
     {
-        Money = 0;
+        // TO DO -> Reset to 0 before publishing.
+        Money = 10000;
         TournamentsWon = 0;
 
         for (int i = 0; i < BoothCount; i++)

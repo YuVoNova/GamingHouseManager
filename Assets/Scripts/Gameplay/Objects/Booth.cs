@@ -296,7 +296,7 @@ public class Booth : MonoBehaviour
     {
         activeMemberCount = Mathf.Clamp(activeMemberCount + 1, 0, Members.Length);
 
-        if (activeMemberCount >= Members.Length)
+        if (activeMemberCount >= Members.Length && currentEnergy > 0f)
         {
             IsWorking = true;
         }

@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 3170270903491208256}
   - component: {fileID: 3170270903491208257}
   - component: {fileID: 3170270903491208258}
-  - component: {fileID: 8269563239813266213}
+  - component: {fileID: 8866150912500292571}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   rotationSpeed: 10
   clickFlag: 0
   isJoystickActive: 0
-  MovementSpeed: 250
+  MovementSpeed: 300
 --- !u!114 &4990944288000625686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,7 +1419,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8269563239813266213
+--- !u!114 &8866150912500292571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1428,12 +1428,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3170270903491208260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a5525d75aa0144fb547bfb58cf9b80, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlowMoneyPrefab: {fileID: 0}
-  SpawnDuration: 0
-  TargetTransform: {fileID: 0}
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7673323, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3188407678140381424
 GameObject:
   m_ObjectHideFlags: 0
