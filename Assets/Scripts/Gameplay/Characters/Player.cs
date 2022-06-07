@@ -94,6 +94,10 @@ public class Player : MonoBehaviour
 
         currentEnergyDrinkCount++;
 
+        AudioSource.volume = 0.4f;
+        AudioSource.clip = Manager.Instance.Audios["EnergyPickup"];
+        AudioSource.Play();
+
         if (!UIManager.Instance.DropEnergyDrinksButtonObject.activeSelf)
         {
             UIManager.Instance.DropEnergyDrinksButtonObject.SetActive(true);
@@ -112,6 +116,10 @@ public class Player : MonoBehaviour
             currentEnergyDrinkCount--;
 
             energyDrinks[currentEnergyDrinkCount].GetComponent<PlayerEnergyDrink>().Magnetize(targetBooth);
+
+            AudioSource.volume = 0.4f;
+            AudioSource.clip = Manager.Instance.Audios["EnergyAcquired"];
+            AudioSource.Play();
 
             if (currentEnergyDrinkCount == 0 && UIManager.Instance.DropEnergyDrinksButtonObject.activeSelf)
             {

@@ -83,4 +83,9 @@ public class UIManager : MonoBehaviour
 
         TournamentResultsScreen.SetActive(true);
     }
+
+    public void UpdateMoneyText()
+    {
+        MoneyText.text = "" + Manager.Instance.PlayerData.Money;
+    }
 }

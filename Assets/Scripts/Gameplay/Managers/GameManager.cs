@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public Transform[] MemberBusSpawnPoints;
     public Transform MemberBusArrivalPoint;
 
+    [SerializeField]
+    private AudioSource AudioSource;
+
 
     // Values
 
@@ -105,8 +108,6 @@ public class GameManager : MonoBehaviour
 
     private void InitializeBooths()
     {
-        // TO DO -> Initialize Booths here depending on PlayerData.
-
         for (int i = 0; i < Booths.Count; i++)
         {
             Booths[i].InitializeBooth();
@@ -126,11 +127,11 @@ public class GameManager : MonoBehaviour
     {
         Manager.Instance.PlayerData.Money += Mathf.FloorToInt(amount);
 
-        //UIManager.UpdateMoneyText();
+        UIManager.Instance.UpdateMoneyText();
 
-        //Player.AudioSource.volume = 0.4f;
-        //Player.AudioSource.clip = Manager.Instance.Audios["Money"];
-        //Player.AudioSource.Play();
+        Player.Instance.AudioSource.volume = 0.5f;
+        Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
+        Player.Instance.AudioSource.Play();
 
         Manager.Instance.Save();
     }
@@ -139,11 +140,11 @@ public class GameManager : MonoBehaviour
     {
         Manager.Instance.PlayerData.Money = Mathf.FloorToInt(Mathf.Clamp(Manager.Instance.PlayerData.Money - amount, 0f, float.MaxValue));
 
-        //UIManager.UpdateMoneyText();
+        UIManager.Instance.UpdateMoneyText();
 
-        //Player.AudioSource.volume = 0.4f;
-        //Player.AudioSource.clip = Manager.Instance.Audios["Money"];
-        //Player.AudioSource.Play();
+        Player.Instance.AudioSource.volume = 0.5f;
+        Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
+        Player.Instance.AudioSource.Play();
 
         Manager.Instance.Save();
     }

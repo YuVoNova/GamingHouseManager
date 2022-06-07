@@ -26,6 +26,9 @@ public class Tournament : MonoBehaviour
     [SerializeField]
     private MoneyThrower MoneyThrower;
 
+    [SerializeField]
+    private AudioSource AudioSource;
+
 
     // Values
 
@@ -108,9 +111,9 @@ public class Tournament : MonoBehaviour
                     }
 
                     UIManager.Instance.EnableTournamentResultsScreen(fixture, tournamentGameId);
+                    AudioSource.Play();
 
                     isTournamentInitialized = false;
-
                     tournamentCooldownTimer = TournamentCooldownDuration;
                 }
                 else

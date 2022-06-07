@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3843909428800802463}
   - component: {fileID: 1704815639959512222}
   - component: {fileID: 412078644807230087}
-  - component: {fileID: 7788725908599710041}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EnergyBarSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,18 +129,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 800
---- !u!114 &7788725908599710041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412736133992000650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7ee833b7d3822479f529c6800c709f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &452467933253926171
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +140,7 @@ GameObject:
   - component: {fileID: 2799648838849641359}
   - component: {fileID: 1901905167958206686}
   - component: {fileID: 1783672372305431494}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EnergyBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +217,7 @@ GameObject:
   - component: {fileID: 8054690799752982034}
   - component: {fileID: 3542726828551348585}
   - component: {fileID: 6723720526283414805}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BoothCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +318,7 @@ GameObject:
   - component: {fileID: 8411846788809703884}
   - component: {fileID: 3009778496729525091}
   - component: {fileID: 8423333825713899272}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LogoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +561,8 @@ GameObject:
   - component: {fileID: 4575411696187543605}
   - component: {fileID: 8263612608798829851}
   - component: {fileID: 6546110175217466195}
-  m_Layer: 5
+  - component: {fileID: 7044517973283091854}
+  m_Layer: 0
   m_Name: EnergyCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +589,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -7.5, y: 6}
-  m_SizeDelta: {x: 8, y: 0.5}
+  m_SizeDelta: {x: 6, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4575411696187543605
 Canvas:
@@ -664,6 +652,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7044517973283091854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697750956773936854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7ee833b7d3822479f529c6800c709f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7860909284164570629
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 5867498098753528240}
   - component: {fileID: 2882931026589952594}
   - component: {fileID: 4241122277200658103}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EnergyLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 328293378311883560}
   - component: {fileID: 2232486900078033548}
   - component: {fileID: 1300948637521547590}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GameLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

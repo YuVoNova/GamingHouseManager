@@ -125,7 +125,9 @@ public class Manager : MonoBehaviour
     {
         Audios = new Dictionary<string, AudioClip>();
 
-
+        Audios.Add("EnergyAcquired", Resources.Load("Audios/EnergyAcquired") as AudioClip);
+        Audios.Add("EnergyPickup", Resources.Load("Audios/EnergyPickup") as AudioClip);
+        Audios.Add("Money", Resources.Load("Audios/Money") as AudioClip);
     }
 
     public void Save()
