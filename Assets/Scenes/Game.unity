@@ -515,6 +515,7 @@ MonoBehaviour:
   EnergyAmount: 20
   IsGameOn: 0
   OnMenu: 0
+  CurrentBoothOrder: 0
 --- !u!1 &127498467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1844,7 @@ PrefabInstance:
     - target: {fileID: 341775849132530676, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
       propertyPath: TournamentWinsRequired
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 341775849132530677, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
@@ -2801,7 +2802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc47079cf80c9894a8adf6ab7e08629d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropEnergyDrinksButtonObject: {fileID: 0}
   MoneyText: {fileID: 1290362195}
   TournamentResultsScreen: {fileID: 955725571}
   PlayerTeamIndicator: {fileID: 1256030100}
@@ -3099,7 +3099,7 @@ PrefabInstance:
     - target: {fileID: 3652431527683770289, guid: e308a78561525bb439652ce28a8e1986,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3652431527683770289, guid: e308a78561525bb439652ce28a8e1986,
         type: 3}
