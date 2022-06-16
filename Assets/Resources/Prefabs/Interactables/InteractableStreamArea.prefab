@@ -19162,6 +19162,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Studio_stand_small
       objectReference: {fileID: 0}
+    - target: {fileID: 6624515602094683389, guid: 56be46c7155725041aa1e4e179e1d0fd,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8469175246529114674, guid: 56be46c7155725041aa1e4e179e1d0fd,
         type: 3}
       propertyPath: m_RootOrder
@@ -19252,6 +19257,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Monitor_f_big
       objectReference: {fileID: 0}
+    - target: {fileID: 1511110184226188275, guid: 39ec31f284ac94f478b0e58ed11cfcb4,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4224100887674629436, guid: 39ec31f284ac94f478b0e58ed11cfcb4,
         type: 3}
       propertyPath: m_RootOrder
@@ -19337,6 +19347,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5731548642019893320}
     m_Modifications:
+    - target: {fileID: 4829853121986122394, guid: 1c30da3cf104acc4bbf04287186dc27f,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6574063446052660806, guid: 1c30da3cf104acc4bbf04287186dc27f,
         type: 3}
       propertyPath: m_Name
@@ -19497,6 +19512,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7835501074581764055, guid: f9078ac4503cfa1418e9275013ccaa04,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8395163504116564747, guid: f9078ac4503cfa1418e9275013ccaa04,
         type: 3}
       propertyPath: m_Name
@@ -19585,6 +19605,11 @@ PrefabInstance:
     - target: {fileID: 461810726179071626, guid: 46abe17feb804204d8e4f6521f4770ec,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2886562980816396357, guid: 46abe17feb804204d8e4f6521f4770ec,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3473392074811282585, guid: 46abe17feb804204d8e4f6521f4770ec,
@@ -19677,6 +19702,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7721848158442220498, guid: 155780697a73f7843a30913f9d15f161,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8292628779644346126, guid: 155780697a73f7843a30913f9d15f161,
         type: 3}
       propertyPath: m_Name
@@ -19697,6 +19727,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5731548642019893320}
     m_Modifications:
+    - target: {fileID: 785368945652673366, guid: 08aa948230576ca49addf72d6955dcda,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1358652128873291658, guid: 08aa948230576ca49addf72d6955dcda,
         type: 3}
       propertyPath: m_Name
@@ -19937,6 +19972,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3151637343312746837, guid: b023d364c45f99b49a8cf49ef74db9af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3710978718019169673, guid: b023d364c45f99b49a8cf49ef74db9af,
         type: 3}
       propertyPath: m_Name
@@ -19957,6 +19997,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5731548642019893320}
     m_Modifications:
+    - target: {fileID: 5745496420379491399, guid: d9c41e274e2885b419b67db7e065eb73,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6305264333268797595, guid: d9c41e274e2885b419b67db7e065eb73,
         type: 3}
       propertyPath: m_Name
@@ -20122,6 +20167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Mouse_c_2_electric
       objectReference: {fileID: 0}
+    - target: {fileID: 4075062083088855681, guid: 4f1e72ab8e6909c4ca23980b51617ec0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f1e72ab8e6909c4ca23980b51617ec0, type: 3}
 --- !u!4 &8256208844471305337 stripped
@@ -20222,6 +20272,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5731548642019893320}
     m_Modifications:
+    - target: {fileID: 1071446622997243093, guid: e14f75427917d6548999ea29a2c6698f,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1648982712882089993, guid: e14f75427917d6548999ea29a2c6698f,
         type: 3}
       propertyPath: m_Name
