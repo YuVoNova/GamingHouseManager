@@ -510,10 +510,12 @@ MonoBehaviour:
   - {fileID: 133599495}
   - {fileID: 1964191250}
   MemberBusArrivalPoint: {fileID: 127498468}
+  AudioSource: {fileID: 0}
   AvailableGameIDList: 
   EnergyAmount: 20
   IsGameOn: 0
   OnMenu: 0
+  CurrentBoothOrder: 0
 --- !u!1 &127498467
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,12 +605,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-<<<<<<< HEAD
-  - {fileID: 1290362194}
-=======
-  - {fileID: 1550558178}
->>>>>>> cfc2acbf2f1e87d0d02977bc80fbbd11554bc193
+  m_Children: []
   m_Father: {fileID: 559405627}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1336,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 341775849132530676, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
       propertyPath: TournamentWinsRequired
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 341775849132530677, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
@@ -1756,7 +1753,7 @@ PrefabInstance:
     - target: {fileID: 341775849132530676, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
       propertyPath: TournamentWinsRequired
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 341775849132530677, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
@@ -2714,13 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc47079cf80c9894a8adf6ab7e08629d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  DropEnergyDrinksButtonObject: {fileID: 0}
-  MoneyText: {fileID: 1290362195}
-=======
-  DropEnergyDrinksButtonObject: {fileID: 1550558177}
   MoneyText: {fileID: 0}
->>>>>>> cfc2acbf2f1e87d0d02977bc80fbbd11554bc193
   TournamentResultsScreen: {fileID: 955725571}
   PlayerTeamIndicator: {fileID: 1256030100}
   TournamentGameLogo: {fileID: 1384631107}
@@ -4211,6 +4202,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 904808cbe4046ea41a5cd5d7b4f2296a,
         type: 3}
+    - target: {fileID: 341775849132530676, guid: 1a3dc392be9340943ba9e4cc765cba2d,
+        type: 3}
+      propertyPath: TournamentWinsRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 341775849132530677, guid: 1a3dc392be9340943ba9e4cc765cba2d,
         type: 3}
       propertyPath: m_RootOrder
