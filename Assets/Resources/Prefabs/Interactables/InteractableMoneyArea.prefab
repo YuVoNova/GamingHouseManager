@@ -226,7 +226,7 @@ MonoBehaviour:
   InteractionType: 0
   AreaMoneyParent: {fileID: 8526429941272318085}
   MoneyPerSecondText: {fileID: 4807259473825024780}
-  AmountPerMoneyLevels: 000000000300000004000000060000000a000000
+  AmountPerMoneyLevels: 0000000001000000020000000300000004000000
   MagnetizeDuration: 0.03
   MoneySpawnDuration: 0.8
 --- !u!65 &8526429940584911997
