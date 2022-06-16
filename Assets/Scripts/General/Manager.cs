@@ -132,7 +132,10 @@ public class Manager : MonoBehaviour
 
     public void Save()
     {
-        SerializeData();
+        if (!PlayerData.IsTutorial)
+        {
+            SerializeData();
+        }
     }
 
     #region Data Handling
@@ -163,6 +166,7 @@ public class Manager : MonoBehaviour
     // Saves progress data.
     private void SerializeData()
     {
+        jsonData.IsTutorial = PlayerData.IsTutorial;
         jsonData.Money = PlayerData.Money;
         jsonData.TournamentsWon = PlayerData.TournamentsWon;
         jsonData.BoothLevels = PlayerData.BoothLevels;
@@ -201,6 +205,7 @@ public class Manager : MonoBehaviour
 
         jsonData = JsonUtility.FromJson<JsonData>(jsonDataString);
 
+        PlayerData.IsTutorial = jsonData.IsTutorial;
         PlayerData.Money = jsonData.Money;
         PlayerData.TournamentsWon = jsonData.TournamentsWon;
         PlayerData.BoothLevels = jsonData.BoothLevels;
@@ -233,6 +238,8 @@ public class Manager : MonoBehaviour
 
 public class JsonData
 {
+    public bool IsTutorial;
+
     public int Money;
     public int TournamentsWon;
 

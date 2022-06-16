@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public Animator Animator;
 
     [SerializeField]
+    private Transform Navigator;
+
+    [SerializeField]
     private Transform EnergyDrinkParent;
 
     private List<GameObject> energyDrinks;
@@ -98,11 +101,6 @@ public class Player : MonoBehaviour
         AudioSource.clip = Manager.Instance.Audios["EnergyPickup"];
         AudioSource.Play();
 
-        if (!UIManager.Instance.DropEnergyDrinksButtonObject.activeSelf)
-        {
-            UIManager.Instance.DropEnergyDrinksButtonObject.SetActive(true);
-        }
-
         if (currentEnergyDrinkCount >= energyDrinkCapacity)
         {
             AvailableForEnergyDrinks = false;
@@ -121,27 +119,10 @@ public class Player : MonoBehaviour
             AudioSource.clip = Manager.Instance.Audios["EnergyAcquired"];
             AudioSource.Play();
 
-            if (currentEnergyDrinkCount == 0 && UIManager.Instance.DropEnergyDrinksButtonObject.activeSelf)
-            {
-                UIManager.Instance.DropEnergyDrinksButtonObject.SetActive(false);
-            }
-
             if (currentEnergyDrinkCount < energyDrinkCapacity)
             {
                 AvailableForEnergyDrinks = true;
             }
         }
-    }
-
-    public void DropEnergyDrinks()
-    {
-        currentEnergyDrinkCount = 0;
-
-        foreach (GameObject energyDrink in energyDrinks)
-        {
-            energyDrink.SetActive(false);
-        }
-
-        AvailableForEnergyDrinks = true;
     }
 }

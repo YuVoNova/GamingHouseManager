@@ -9,11 +9,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
 
-    // In-Game Buttons
-
-    public GameObject DropEnergyDrinksButtonObject;
-
-
     // Money Panel
 
     [SerializeField]
@@ -41,8 +36,6 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
 
-        DropEnergyDrinksButtonObject.SetActive(false);
-
         for (int i = 0; i < TeamPanels.Length; i++)
         {
             TeamPanels[i].RankText.text = "" + (i + 1);
@@ -52,13 +45,6 @@ public class UIManager : MonoBehaviour
     }
 
     // Methods
-
-    public void OnClickDropEnergyDrinksButton()
-    {
-        Player.Instance.DropEnergyDrinks();
-
-        DropEnergyDrinksButtonObject.SetActive(false);
-    }
 
     public void EnableTournamentResultsScreen(int[] fixture, int gameId)
     {

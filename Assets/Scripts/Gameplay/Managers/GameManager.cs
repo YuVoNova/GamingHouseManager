@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     private int waitingBusId;
 
+    [HideInInspector]
+    public int CurrentBoothOrder;
+
     
     // Unity Functions
 
@@ -108,6 +111,16 @@ public class GameManager : MonoBehaviour
 
     private void InitializeBooths()
     {
+        CurrentBoothOrder = 4;
+        for (int i = 0; i < PlayerData.BoothCount; i++)
+        {
+            if (Manager.Instance.PlayerData.BoothLevels[i] == 0)
+            {
+                CurrentBoothOrder = i;
+                break;
+            }
+        }
+
         for (int i = 0; i < Booths.Count; i++)
         {
             Booths[i].InitializeBooth();

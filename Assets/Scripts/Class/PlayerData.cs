@@ -4,6 +4,8 @@ public class PlayerData
     public const int BoothLevelCount = 4;
     public const int MainHubLevelCount = 2;
 
+    public bool IsTutorial;
+
     public int Money;
     public int TournamentsWon;
 
@@ -15,8 +17,9 @@ public class PlayerData
 
     public PlayerData()
     {
-        // TO DO -> Reset to 0 before publishing.
-        Money = 10000;
+        IsTutorial = true;
+
+        Money = 500;
         TournamentsWon = 0;
 
         for (int i = 0; i < BoothCount; i++)

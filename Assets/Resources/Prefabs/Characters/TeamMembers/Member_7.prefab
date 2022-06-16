@@ -587,7 +587,6 @@ GameObject:
   - component: {fileID: 6436445722489188062}
   - component: {fileID: 9206706387812600998}
   - component: {fileID: 6343730901321123629}
-  - component: {fileID: -7588382296440683473}
   m_Layer: 6
   m_Name: Member_7
   m_TagString: Untagged
@@ -668,24 +667,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-7588382296440683473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324142101095804785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 3
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &2385286327404048233
 GameObject:
   m_ObjectHideFlags: 0
