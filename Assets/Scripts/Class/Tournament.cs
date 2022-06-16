@@ -23,6 +23,12 @@ public class Tournament : MonoBehaviour
 
     public Bus Bus;
 
+    [SerializeField]
+    private MoneyThrower MoneyThrower;
+
+    [SerializeField]
+    private AudioSource AudioSource;
+
 
     // Values
 
@@ -34,7 +40,11 @@ public class Tournament : MonoBehaviour
     private bool isTournamentInitialized;
 
     private int tournamentGameId;
-    private int prizePool;
+
+    [SerializeField]
+    private int BasePrize;
+
+    private int[] rankMultipliers = new int[8] { 15, 12, 10, 5, 4, 3, 2, 1 };
 
     private List<int> teamList;
 
@@ -51,6 +61,8 @@ public class Tournament : MonoBehaviour
 
     private int minutes;
     private int seconds;
+
+    private int playerIndex;
 
 
     private void Awake()
@@ -75,9 +87,20 @@ public class Tournament : MonoBehaviour
 
                     GameManager.Instance.FinalizeTournament(tournamentGameId);
 
+                    for (int i = 0; i < fixture.Length; i++)
+                    {
+                        if (fixture[i] == 0)
+                        {
+                            playerIndex = i;
+                            break;
+                        }
+                    }
+                    MoneyThrower.SpawnMoney(BasePrize * rankMultipliers[playerIndex]);
+
                     if (fixture[0] == 0)
                     {
                         Manager.Instance.PlayerData.TournamentsWon++;
+                        Manager.Instance.Save();
 
                         for (int i = 0; i < Sponsors.Length; i++)
                         {
@@ -89,9 +112,9 @@ public class Tournament : MonoBehaviour
                     }
 
                     UIManager.Instance.EnableTournamentResultsScreen(fixture, tournamentGameId);
+                    AudioSource.Play();
 
                     isTournamentInitialized = false;
-
                     tournamentCooldownTimer = TournamentCooldownDuration;
                 }
                 else

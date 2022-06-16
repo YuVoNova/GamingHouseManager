@@ -54,16 +54,6 @@ public class MoneyThrower : MonoBehaviour
         spawnForce = Vector3.zero;
         for (int i = 0; i < spawnAmount; i++)
         {
-            //spawnForce.x = Random.Range(-SideForce, SideForce);
-            //spawnForce.y = Random.Range(UpForce / 2f, UpForce);
-            //spawnForce.z = Random.Range(-SideForce, SideForce);
-
-            //if (spawnForce.x > 0) spawnForce.x += SideForce;
-            //else spawnForce.x -= SideForce;
-
-            //if (spawnForce.z > 0) spawnForce.z += SideForce * 3f;
-            //else spawnForce.z -= SideForce * 3f;
-
             spawnForce.x = Random.Range(-SideForce / 3f, SideForce / 3f);
             spawnForce.y = Random.Range(UpForce / 2f, UpForce);
             spawnForce.z = Random.Range(-SideForce / 2f, -SideForce);

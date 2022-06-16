@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
                             clickFlag = false;
                             isJoystickActive = true;
 
-                            // TO DO -> Play "Run" animation.
                             Player.Instance.Animator.SetBool("isRunning", true);
                         }
 
@@ -87,14 +86,12 @@ public class PlayerController : MonoBehaviour
                         clickFlag = false;
                         isJoystickActive = false;
 
-                        // TO DO -> Play "Idle" animation.
                         Player.Instance.Animator.SetBool("isRunning", false);
 
                     }
                 }
                 else
                 {
-                    // TO DO -> Play "Idle" animation.
                     Player.Instance.Animator.SetBool("isRunning", false);
 
                     direction = transform.forward;

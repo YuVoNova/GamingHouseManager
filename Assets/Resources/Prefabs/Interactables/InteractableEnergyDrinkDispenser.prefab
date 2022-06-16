@@ -94,7 +94,7 @@ MonoBehaviour:
   InteractionType: 0
   EnergyDrinkParent: {fileID: 2804810121924667059}
   MagnetizeDuration: 0.35
-  EnergyDrinkSpawnDuration: 1.5
+  EnergyDrinkSpawnDuration: 2
 --- !u!65 &2804810123651211851
 BoxCollider:
   m_ObjectHideFlags: 0

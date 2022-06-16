@@ -46,6 +46,9 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private Slider EnergyBarSlider;
 
+    [SerializeField]
+    private GameObject SleepingVFX;
+
 
     // Values
 
@@ -226,7 +229,7 @@ public class Booth : MonoBehaviour
 
         currentEnergy = Mathf.FloorToInt(Mathf.Clamp(currentEnergy + GameManager.Instance.EnergyAmount, 0f, MaxEnergy));
         UniformEnergyValue = currentEnergy / MaxEnergy;
-        
+
         UpdateEnergyBar();
 
         if (!IsWorking && !IsAtTournament)
@@ -237,8 +240,11 @@ public class Booth : MonoBehaviour
             {
                 Members[i].Play();
             }
+        }
 
-            // TO DO -> Disable any VFX / Animation / Sound based on depleted energy here.
+        if (SleepingVFX.activeSelf)
+        {
+            SleepingVFX.SetActive(false);
         }
     }
 
@@ -251,7 +257,7 @@ public class Booth : MonoBehaviour
             Members[i].Sleep();
         }
 
-        // TO DO -> Enable any VFX / Animation / Sound based on depleted energy here.
+        SleepingVFX.SetActive(true);
     }
 
     private void UpdateEnergyBar()
@@ -271,7 +277,7 @@ public class Booth : MonoBehaviour
             Members[i].GoToTournament();
         }
     }
-    
+
     public void FinalizeTournament()
     {
         IsAtTournament = false;
@@ -290,7 +296,7 @@ public class Booth : MonoBehaviour
     {
         activeMemberCount = Mathf.Clamp(activeMemberCount + 1, 0, Members.Length);
 
-        if (activeMemberCount >= Members.Length)
+        if (activeMemberCount >= Members.Length && currentEnergy > 0f)
         {
             IsWorking = true;
         }
