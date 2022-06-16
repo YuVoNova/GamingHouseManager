@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1187191878073614287}
   - component: {fileID: 1187191878073614280}
-  - component: {fileID: 1710315115336317982}
   m_Layer: 8
   m_Name: AreaMoney
   m_TagString: Untagged
@@ -131,23 +130,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Amount: 0
   Speed: 12.5
---- !u!95 &1710315115336317982
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187191878073614281}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f50624a04c8dbb4699470888e14771b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
