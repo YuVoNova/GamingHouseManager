@@ -79,7 +79,7 @@ public class InteractableBuyBooth : Interactable
                 {
                     Player.Instance.MoneyFlow.EndFlow();
 
-                    GameManager.Instance.UpgradeBooth(boothId);
+                    GameManager.Instance.UpgradeBoothFunction(boothId);
                     PaymentCompleted();
                 }
             }

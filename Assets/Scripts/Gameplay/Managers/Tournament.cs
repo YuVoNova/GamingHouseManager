@@ -77,70 +77,73 @@ public class Tournament : MonoBehaviour
 
     private void Update()
     {
-        if (TournamentsOn)
+        if ((Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S9) || !Manager.Instance.PlayerData.IsTutorial)
         {
-            if (tournamentCooldownTimer <= 0f)
+            if (TournamentsOn)
             {
-                if (tournamentTimer <= 0f)
+                if (tournamentCooldownTimer <= 0f)
                 {
-                    Bus.StartBus(false);
-
-                    GameManager.Instance.FinalizeTournament(tournamentGameId);
-
-                    for (int i = 0; i < fixture.Length; i++)
+                    if (tournamentTimer <= 0f)
                     {
-                        if (fixture[i] == 0)
-                        {
-                            playerIndex = i;
-                            break;
-                        }
-                    }
-                    MoneyThrower.SpawnMoney(BasePrize * rankMultipliers[playerIndex]);
+                        Bus.StartBus(false);
 
-                    if (fixture[0] == 0)
-                    {
-                        Manager.Instance.PlayerData.TournamentsWon++;
-                        Manager.Instance.Save();
+                        GameManager.Instance.FinalizeTournament(tournamentGameId);
 
-                        for (int i = 0; i < Sponsors.Length; i++)
+                        for (int i = 0; i < fixture.Length; i++)
                         {
-                            if (!Sponsors[i].IsUnlocked)
+                            if (fixture[i] == 0)
                             {
-                                Sponsors[i].CheckRequirements();
+                                playerIndex = i;
+                                break;
                             }
                         }
+                        MoneyThrower.SpawnMoney(BasePrize * rankMultipliers[playerIndex]);
+
+                        if (fixture[0] == 0)
+                        {
+                            Manager.Instance.PlayerData.TournamentsWon++;
+                            Manager.Instance.Save();
+
+                            for (int i = 0; i < Sponsors.Length; i++)
+                            {
+                                if (!Sponsors[i].IsUnlocked)
+                                {
+                                    Sponsors[i].CheckRequirements();
+                                }
+                            }
+                        }
+
+                        UIManager.Instance.EnableTournamentResultsScreen(fixture, tournamentGameId);
+                        AudioSource.Play();
+
+                        isTournamentInitialized = false;
+                        tournamentCooldownTimer = TournamentCooldownDuration;
                     }
-
-                    UIManager.Instance.EnableTournamentResultsScreen(fixture, tournamentGameId);
-                    AudioSource.Play();
-
-                    isTournamentInitialized = false;
-                    tournamentCooldownTimer = TournamentCooldownDuration;
+                    else
+                    {
+                        tournamentTimer -= Time.deltaTime;
+                    }
                 }
                 else
                 {
-                    tournamentTimer -= Time.deltaTime;
-                }
-            }
-            else
-            {
-                if (!isTournamentInitialized)
-                {
-                    InitializeTournament();
-                }
+                    if (!isTournamentInitialized)
+                    {
+                        InitializeTournament();
+                    }
 
-                tournamentCooldownTimer -= Time.deltaTime;
+                    tournamentCooldownTimer -= Time.deltaTime;
 
-                UpdateTournamentTimerText();
+                    UpdateTournamentTimerText();
 
-                if (tournamentCooldownTimer <= 0f)
-                {
-                    Bus.StartBus(true);
+                    if (tournamentCooldownTimer <= 0f)
+                    {
+                        Bus.StartBus(true);
 
-                    GameManager.Instance.InitializeTournament(tournamentGameId);
+                        GameManager.Instance.InitializeTournament(tournamentGameId);
 
-                    TournamentTimerText.gameObject.SetActive(false);
-                    TournamentOnText.SetActive(true);
+                        TournamentTimerText.gameObject.SetActive(false);
+                        TournamentOnText.SetActive(true);
+                    }
                 }
             }
         }
@@ -206,5 +209,11 @@ public class Tournament : MonoBehaviour
             TournamentCanvas.SetActive(true);
             TournamentOnText.SetActive(false);
         }
+    }
+
+    public void TutorialTournament()
+    {
+        tournamentCooldownTimer = 3.25f;
+        tournamentTimer = 9f;
     }
 }

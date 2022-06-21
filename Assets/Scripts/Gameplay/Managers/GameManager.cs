@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,18 +25,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject InteractableUpgradeMainHub;
-
     [SerializeField]
     private GameObject InteractableStreamArea;
+    [SerializeField]
+    private GameObject InteractableEnergyDrinkDispenser;
+    [SerializeField]
+    private GameObject TournamentScreen;
+    [SerializeField]
+    private GameObject SponsorsObject;
 
     public Tournament Tournament;
+
+    public Tutorial Tutorial;
 
     public Transform[] MemberInitialSpawnPoints;
     public Transform[] MemberBusSpawnPoints;
     public Transform MemberBusArrivalPoint;
 
-    [SerializeField]
-    private AudioSource AudioSource;
+    public CameraMovement CameraMovement;
+
+    public Transform[] BoothCameraPoints;
 
 
     // Values
@@ -57,7 +66,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int CurrentBoothOrder;
 
-    
+
     // Unity Functions
 
     private void Awake()
@@ -79,21 +88,20 @@ public class GameManager : MonoBehaviour
             InteractableStreamArea.SetActive(false);
         }
 
-        IsGameOn = false;
+        IsGameOn = true;
         OnMenu = false;
+
+        Tutorial.CheckTutorial();
     }
 
     private void Start()
     {
-        StartGame();
+
     }
 
     private void Update()
     {
-        if (IsGameOn)
-        {
 
-        }
     }
 
     private void FixedUpdate()
@@ -103,11 +111,6 @@ public class GameManager : MonoBehaviour
 
 
     // Methods
-
-    private void StartGame()
-    {
-        IsGameOn = true;
-    }
 
     private void InitializeBooths()
     {
@@ -124,6 +127,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < Booths.Count; i++)
         {
             Booths[i].InitializeBooth();
+        }
+
+        if (CurrentBoothOrder < PlayerData.BoothCount)
+        {
+            Booths[CurrentBoothOrder].DisableClosed();
         }
 
         if (AvailableGameIDList.Count > 0)
@@ -183,12 +191,30 @@ public class GameManager : MonoBehaviour
         return Booths[boothId].CurrentBoothLevel;
     }
 
-    public void UpgradeBooth(int boothId)
+    public void UpgradeBoothFunction(int boothId)
     {
+        StartCoroutine(UpgradeBooth(boothId));
+    }
+
+    private IEnumerator UpgradeBooth(int boothId)
+    {
+        CameraMovement.ChangeTarget(BoothCameraPoints[boothId].position);
+
+        yield return new WaitForSeconds(1.5f);
+
         Booths[boothId].LevelUpBooth();
 
         RebuildNavMesh();
-    } 
+
+        yield return new WaitForSeconds(1.5f);
+
+        CameraMovement.DefaultTarget();
+
+        if (Manager.Instance.PlayerData.IsTutorial && Tutorial.CurrentState == TutorialStates.S1)
+        {
+            Tutorial.BoothUnlocked();
+        }
+    }
 
     public void UpgradeMainHub()
     {
@@ -218,5 +244,49 @@ public class GameManager : MonoBehaviour
     public void BusReturned()
     {
         Booths[waitingBusId].BusReturned();
+    }
+
+    public void BoothUnlocked()
+    {
+        CurrentBoothOrder++;
+
+        if (CurrentBoothOrder < PlayerData.BoothCount)
+        {
+            Booths[CurrentBoothOrder].DisableClosed();
+        }
+    }
+
+    public void InitializeTutorial()
+    {
+        InteractableUpgradeMainHub.SetActive(false);
+        InteractableEnergyDrinkDispenser.SetActive(false);
+        TournamentScreen.SetActive(false);
+        SponsorsObject.SetActive(false);
+    }
+
+    public void ActivateEnergyDrinkDispenser()
+    {
+        InteractableEnergyDrinkDispenser.SetActive(true);
+    }
+
+    public void ActivateTeamEnergy()
+    {
+        Booths[0].ActivateTeamEnergy();
+    }
+
+    public void TutorialTournament()
+    {
+        Tournament.TutorialTournament();
+        TournamentScreen.SetActive(true);
+    }
+
+    public void FinalizeTutorial()
+    {
+        SponsorsObject.SetActive(true);
+        InteractableUpgradeMainHub.SetActive(true);
+        Player.Instance.FinalizeTutorial();
+
+        Manager.Instance.PlayerData.IsTutorial = false;
+        Manager.Instance.Save();
     }
 }

@@ -27,9 +27,9 @@ public class PlayerData
             BoothLevels[i] = 0;
         }
 
-        BoothLevels[0] = 1;
+        //BoothLevels[0] = 1;
 
-        BoothPrices[0] = new int[BoothLevelCount] { 0, 1000, 1500, 3000 };
+        BoothPrices[0] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
         BoothPrices[1] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
         BoothPrices[2] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
         BoothPrices[3] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };

@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     public Animator Animator;
 
     [SerializeField]
-    private Transform Navigator;
-
-    [SerializeField]
     private Transform EnergyDrinkParent;
 
     private List<GameObject> energyDrinks;
@@ -33,6 +30,9 @@ public class Player : MonoBehaviour
 
     public Image InteractionFiller;
 
+    [SerializeField]
+    private Transform Navigator;
+
 
     // Values
 
@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public bool AvailableForEnergyDrinks;
+
+    private Vector3 navigationTarget;
+    private bool isNavigating;
 
 
     // Unity Functions
@@ -60,6 +63,9 @@ public class Player : MonoBehaviour
         energyDrinkCapacity = energyDrinks.Count;
 
         AvailableForEnergyDrinks = true;
+
+        navigationTarget = Vector3.zero;
+        isNavigating = false;
     }
 
     private void Start()
@@ -69,7 +75,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        if (isNavigating)
+        {
+            Navigator.LookAt(navigationTarget);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,6 +114,11 @@ public class Player : MonoBehaviour
         {
             AvailableForEnergyDrinks = false;
         }
+
+        if (Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S5)
+        {
+            GameManager.Instance.Tutorial.EnergyDrinkAcquired();
+        }
     }
 
     public void EnergyDrinkSpent(Booth targetBooth)
@@ -124,5 +138,29 @@ public class Player : MonoBehaviour
                 AvailableForEnergyDrinks = true;
             }
         }
+    }
+
+    public void ToggleCollider(bool isEnabled)
+    {
+        GetComponent<Collider>().enabled = isEnabled;
+    }
+
+    public void InitializeTutorial()
+    {
+        Navigator.gameObject.SetActive(true);
+    }
+
+    public void FinalizeTutorial()
+    {
+        Navigator.gameObject.SetActive(false);
+
+        isNavigating = false;
+    }
+
+    public void Navigate(Vector3 target)
+    {
+        navigationTarget = target;
+
+        isNavigating = true;
     }
 }

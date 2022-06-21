@@ -8,19 +8,38 @@ public class CameraMovement : MonoBehaviour
     private Vector3 offset;
     private Vector3 target;
 
+    private bool isPlayer;
+
     private void Awake()
     {
         offset = transform.position;
-    }
 
-    private void Start()
-    {
-
+        isPlayer = true;
     }
 
     private void FixedUpdate()
     {
-        target = Player.Instance.transform.position + offset;
+        if (isPlayer)
+        {
+            target = Player.Instance.transform.position + offset;
+        }
         transform.position = Vector3.Lerp(transform.position, target, FollowSpeed * Time.deltaTime);
+    }
+
+    public void ChangeTarget(Vector3 newTarget)
+    {
+        isPlayer = false;
+        target = newTarget + offset;
+
+        //Player.Instance.ToggleCollider(false);
+        GameManager.Instance.IsGameOn = false;
+    }
+
+    public void DefaultTarget()
+    {
+        isPlayer = true;
+
+        //Player.Instance.ToggleCollider(true);
+        GameManager.Instance.IsGameOn = true;
     }
 }

@@ -49,6 +49,12 @@ public class Booth : MonoBehaviour
     [SerializeField]
     private GameObject SleepingVFX;
 
+    [SerializeField]
+    private GameObject ClosedObject;
+
+    [SerializeField]
+    private GameObject RoomObject;
+
 
     // Values
 
@@ -156,6 +162,13 @@ public class Booth : MonoBehaviour
         }
         else
         {
+            if (GameManager.Instance.CurrentBoothOrder < ID)
+            {
+                RoomObject.SetActive(false);
+                InteractableBuyBooth.gameObject.SetActive(false);
+                ClosedObject.SetActive(true);
+            }
+
             for (int i = 0; i < Members.Length; i++)
             {
                 Members[i].gameObject.SetActive(false);
@@ -172,7 +185,10 @@ public class Booth : MonoBehaviour
 
         UpdateEnergyBar();
 
-        BoothLevels[CurrentBoothLevel].SetActive(true);
+        if (GameManager.Instance.CurrentBoothOrder >= ID)
+        {
+            BoothLevels[CurrentBoothLevel].SetActive(true);
+        }
         GameManager.Instance.RebuildNavMesh();
     }
 
@@ -199,6 +215,20 @@ public class Booth : MonoBehaviour
 
         EnergyCanvas.SetActive(true);
         InteractableMoneyArea.gameObject.SetActive(true);
+        if (!Manager.Instance.PlayerData.IsTutorial)
+        {
+            ActivateTeamEnergy();
+        }
+
+        GameManager.Instance.BoothUnlocked();
+
+        if (Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S1)
+        {
+            currentEnergy = MaxEnergy * 0.3f;
+            UniformEnergyValue = currentEnergy / MaxEnergy;
+
+            UpdateEnergyBar();
+        }
     }
 
     public void LevelUpBooth()
@@ -208,13 +238,14 @@ public class Booth : MonoBehaviour
 
         BoothLevels[CurrentBoothLevel].SetActive(false);
 
-        Manager.Instance.PlayerData.BoothLevels[ID] = Mathf.Clamp(Manager.Instance.PlayerData.BoothLevels[ID] + 1, 0, 4);
+        Manager.Instance.PlayerData.BoothLevels[ID] = Mathf.Clamp(Manager.Instance.PlayerData.BoothLevels[ID] + 1, 0, PlayerData.BoothLevelCount);
         Manager.Instance.Save();
 
         CurrentBoothLevel = Manager.Instance.PlayerData.BoothLevels[ID];
 
         if (CurrentBoothLevel == 1)
         {
+            DisableClosed();
             UnlockedBooth(false);
         }
 
@@ -246,6 +277,11 @@ public class Booth : MonoBehaviour
         {
             SleepingVFX.SetActive(false);
         }
+
+        if (Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S7)
+        {
+            GameManager.Instance.Tutorial.EnergyAcquired();
+        }
     }
 
     private void EnergyDepleted()
@@ -258,6 +294,11 @@ public class Booth : MonoBehaviour
         }
 
         SleepingVFX.SetActive(true);
+
+        if (Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S3)
+        {
+            GameManager.Instance.Tutorial.EnergyDepleted();
+        }
     }
 
     private void UpdateEnergyBar()
@@ -300,5 +341,17 @@ public class Booth : MonoBehaviour
         {
             IsWorking = true;
         }
+    }
+
+    public void DisableClosed()
+    {
+        ClosedObject.SetActive(false);
+        InteractableBuyBooth.gameObject.SetActive(true);
+        RoomObject.SetActive(true);
+    }
+
+    public void ActivateTeamEnergy()
+    {
+        InteractableTeamEnergy.gameObject.SetActive(true);
     }
 }
