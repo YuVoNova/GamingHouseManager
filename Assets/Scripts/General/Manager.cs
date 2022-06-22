@@ -145,7 +145,7 @@ public class Manager : MonoBehaviour
         PlayerData = new PlayerData();
         jsonData = new JsonData();
 
-        dataPath = Path.Combine(Application.persistentDataPath, "GamingHouseManager.json");
+        dataPath = Path.Combine(Application.persistentDataPath, "GHM.json");
 
         if (File.Exists(dataPath))
         {

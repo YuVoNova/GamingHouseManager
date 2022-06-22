@@ -1092,7 +1092,7 @@ MonoBehaviour:
   rotationSpeed: 10
   clickFlag: 0
   isJoystickActive: 0
-  MovementSpeed: 300
+  MovementSpeed: 350
 --- !u!114 &4990944288000625686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,7 +3264,7 @@ Transform:
   m_GameObject: {fileID: 8639418533116673666}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 2.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8771558106697192031}

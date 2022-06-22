@@ -240,9 +240,18 @@ public class Tutorial : MonoBehaviour
         
         GameManager.Instance.CameraMovement.ChangeTarget(Indicators[5].transform.position);
 
-        yield return new WaitForSecondsRealtime(9f);
+        yield return new WaitForSecondsRealtime(4f);
+
+        Indicators[6].SetActive(true);
+        GameManager.Instance.CameraMovement.ChangeTarget(Indicators[6].transform.position);
+
+        yield return new WaitForSecondsRealtime(2.5f);
+
+        GameManager.Instance.CameraMovement.ChangeTarget(Indicators[5].transform.position);
 
         GameManager.Instance.CameraMovement.DefaultTarget();
+
+        Indicators[6].SetActive(false);
 
         GameManager.Instance.FinalizeTutorial();
     }

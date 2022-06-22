@@ -31,7 +31,6 @@ public class CameraMovement : MonoBehaviour
         isPlayer = false;
         target = newTarget + offset;
 
-        //Player.Instance.ToggleCollider(false);
         GameManager.Instance.IsGameOn = false;
     }
 
@@ -39,7 +38,6 @@ public class CameraMovement : MonoBehaviour
     {
         isPlayer = true;
 
-        //Player.Instance.ToggleCollider(true);
         GameManager.Instance.IsGameOn = true;
     }
 }

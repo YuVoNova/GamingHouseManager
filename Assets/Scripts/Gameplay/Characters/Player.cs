@@ -140,11 +140,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ToggleCollider(bool isEnabled)
-    {
-        GetComponent<Collider>().enabled = isEnabled;
-    }
-
     public void InitializeTutorial()
     {
         Navigator.gameObject.SetActive(true);

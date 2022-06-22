@@ -45,7 +45,7 @@ public class InteractableUpgradeMainHub : Interactable
     {
         base.ProgressInteraction();
 
-        if (Manager.Instance.PlayerData.Money > 0)
+        if (Manager.Instance.PlayerData.Money > 0 && GameManager.Instance.IsGameOn)
         {
             if (price != 0)
             {

@@ -48,7 +48,7 @@ public class InteractableBuyBooth : Interactable
     {
         base.ProgressInteraction();
 
-        if (Manager.Instance.PlayerData.Money > 0)
+        if (Manager.Instance.PlayerData.Money > 0 && GameManager.Instance.IsGameOn)
         {
             if (price != 0)
             {
@@ -80,7 +80,6 @@ public class InteractableBuyBooth : Interactable
                     Player.Instance.MoneyFlow.EndFlow();
 
                     GameManager.Instance.UpgradeBoothFunction(boothId);
-                    PaymentCompleted();
                 }
             }
         }
@@ -90,7 +89,7 @@ public class InteractableBuyBooth : Interactable
         }
     }
 
-    private void PaymentCompleted()
+    public void PaymentCompleted()
     {
         currentLevel = Manager.Instance.PlayerData.BoothLevels[boothId];
 

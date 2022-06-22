@@ -19,7 +19,7 @@ public class PlayerData
     {
         IsTutorial = true;
 
-        Money = 500;
+        Money = 250;
         TournamentsWon = 0;
 
         for (int i = 0; i < BoothCount; i++)
@@ -29,12 +29,12 @@ public class PlayerData
 
         //BoothLevels[0] = 1;
 
-        BoothPrices[0] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
-        BoothPrices[1] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
+        BoothPrices[0] = new int[BoothLevelCount] { 250, 750, 1500, 3000 };
+        BoothPrices[1] = new int[BoothLevelCount] { 250, 750, 1500, 3000 };
         BoothPrices[2] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
         BoothPrices[3] = new int[BoothLevelCount] { 500, 1000, 1500, 3000 };
 
         MainHubLevel = 0;
-        MainHubPrices = new int[MainHubLevelCount] { 2000, 3000 };
+        MainHubPrices = new int[MainHubLevelCount] { 1000, 2000 };
     }
 }

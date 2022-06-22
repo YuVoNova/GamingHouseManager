@@ -154,6 +154,8 @@ public class Booth : MonoBehaviour
 
         if (CurrentBoothLevel > 0)
         {
+            DisableClosed();
+
             UnlockedBooth(true);
 
             activeMemberCount = 5;
@@ -220,7 +222,7 @@ public class Booth : MonoBehaviour
             ActivateTeamEnergy();
         }
 
-        GameManager.Instance.BoothUnlocked();
+        GameManager.Instance.BoothUnlocked(isInitial);
 
         if (Manager.Instance.PlayerData.IsTutorial && GameManager.Instance.Tutorial.CurrentState == TutorialStates.S1)
         {
@@ -233,15 +235,17 @@ public class Booth : MonoBehaviour
 
     public void LevelUpBooth()
     {
-        InteractableBuyBooth.gameObject.SetActive(false);
-        InteractableBuyBooth.gameObject.SetActive(true);
-
         BoothLevels[CurrentBoothLevel].SetActive(false);
 
         Manager.Instance.PlayerData.BoothLevels[ID] = Mathf.Clamp(Manager.Instance.PlayerData.BoothLevels[ID] + 1, 0, PlayerData.BoothLevelCount);
         Manager.Instance.Save();
 
         CurrentBoothLevel = Manager.Instance.PlayerData.BoothLevels[ID];
+
+        InteractableBuyBooth.PaymentCompleted();
+
+        InteractableBuyBooth.gameObject.SetActive(false);
+        InteractableBuyBooth.gameObject.SetActive(true);
 
         if (CurrentBoothLevel == 1)
         {
@@ -348,6 +352,7 @@ public class Booth : MonoBehaviour
         ClosedObject.SetActive(false);
         InteractableBuyBooth.gameObject.SetActive(true);
         RoomObject.SetActive(true);
+        BoothLevels[CurrentBoothLevel].SetActive(true);
     }
 
     public void ActivateTeamEnergy()

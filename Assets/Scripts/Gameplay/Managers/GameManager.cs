@@ -246,9 +246,12 @@ public class GameManager : MonoBehaviour
         Booths[waitingBusId].BusReturned();
     }
 
-    public void BoothUnlocked()
+    public void BoothUnlocked(bool isInitial)
     {
-        CurrentBoothOrder++;
+        if (!isInitial)
+        {
+            CurrentBoothOrder++;
+        }
 
         if (CurrentBoothOrder < PlayerData.BoothCount)
         {
