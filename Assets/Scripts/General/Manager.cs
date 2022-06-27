@@ -1,8 +1,8 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-//using GameAnalyticsSDK;
-//using Facebook.Unity;
+using GameAnalyticsSDK;
+using Facebook.Unity;
 
 public class Manager : MonoBehaviour
 {
@@ -76,23 +76,6 @@ public class Manager : MonoBehaviour
         Save();
     }
 
-    private void OnApplicationPause(bool pause)
-    {
-        /*
-        if (!pause)
-        {
-            if (FB.IsInitialized)
-            {
-                FB.ActivateApp();
-            }
-            else
-            {
-                FB.Init(() => { FB.ActivateApp(); });
-            }
-        }
-        */
-    }
-
 
     // Functions
 
@@ -107,18 +90,20 @@ public class Manager : MonoBehaviour
 
     private void InitializeSDK()
     {
-        //GameAnalytics.Initialize();
+        GameAnalytics.Initialize();
 
-        /*
-        if (FB.IsInitialized)
+        Debug.Log(FB.ClientToken);
+
+        #if UNITY_ANDROID
+        if (!FB.IsInitialized)
         {
-            FB.ActivateApp();
+            FB.Init(InitCallback, OnHideUnity);
         }
         else
         {
-            FB.Init(() => { FB.ActivateApp(); });
+            FB.ActivateApp();
         }
-        */
+        #endif
     }
 
     private void InitializeSounds()
@@ -135,6 +120,30 @@ public class Manager : MonoBehaviour
         if (!PlayerData.IsTutorial)
         {
             SerializeData();
+        }
+    }
+
+    private void InitCallback()
+    {
+        if (FB.IsInitialized)
+        {
+            FB.ActivateApp();
+        }
+        else
+        {
+            Debug.Log("Failed to initialize the Facebook SDK.");
+        }
+    }
+
+    private void OnHideUnity(bool isGameShown)
+    {
+        if (!isGameShown)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
     }
 
